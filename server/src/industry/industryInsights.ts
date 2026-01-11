@@ -124,13 +124,12 @@ const generateAIInsights = async (industry: string): Promise<IndustryInsights> =
     const searchContext =
       searchResults.length > 0
         ? searchResults
-            .map(
-              (result, index) =>
-                `Source ${index + 1}: ${result.title}\n${
-                  result.snippet
-                }\nLink: ${result.link}`
-            )
-            .join("\n\n")
+          .map(
+            (result, index) =>
+              `Source ${index + 1}: ${result.title}\n${result.snippet
+              }\nLink: ${result.link}`
+          )
+          .join("\n\n")
         : "No recent search results available.";
 
     // Create enhanced prompt with search results
@@ -269,7 +268,7 @@ Include at least 7-10 roles with 2025 salary estimates, 8-10 skills and trends. 
 // GET endpoint to get industry insights
 router.get("/insights/:industry", async (req: Request, res: Response) => {
   try {
-    const { industry } = req.params;
+    const industry = req.params.industry as string;
 
     console.log(`🔍 Generating new insights for ${industry}...`);
     const insights = await generateAIInsights(industry);
@@ -295,7 +294,7 @@ router.get("/insights/:industry", async (req: Request, res: Response) => {
 // POST endpoint to refresh industry insights (same functionality now)
 router.post("/insights/:industry/refresh", async (req: Request, res: Response) => {
   try {
-    const { industry } = req.params;
+    const industry = req.params.industry as string;
 
     console.log(`🔄 Generating fresh insights for ${industry}...`);
     const insights = await generateAIInsights(industry);

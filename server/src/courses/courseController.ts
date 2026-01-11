@@ -194,8 +194,8 @@ export const getCourses = async (
           where.authorId
             ? { authorId: where.authorId }
             : where.bookmarks
-            ? { bookmarks: where.bookmarks }
-            : { enrollments: where.enrollments },
+              ? { bookmarks: where.bookmarks }
+              : { enrollments: where.enrollments },
           { OR: searchConditions },
         ];
         delete where.authorId;
@@ -275,7 +275,7 @@ export const getCourse = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const userId = req.user?.id;
 
     const course = await prisma.course.findUnique({
@@ -285,11 +285,11 @@ export const getCourse = async (
           orderBy: { orderIndex: "asc" },
           include: userId
             ? {
-                progress: {
-                  where: { userId },
-                  select: { isCompleted: true, completedAt: true },
-                },
-              }
+              progress: {
+                where: { userId },
+                select: { isCompleted: true, completedAt: true },
+              },
+            }
             : {},
         },
         bookmarks: userId
@@ -297,16 +297,16 @@ export const getCourse = async (
           : { select: { id: true }, take: 0 },
         enrollments: userId
           ? {
-              where: { userId },
-              select: {
-                id: true,
-                enrolledAt: true,
-                isCompleted: true,
-                completedAt: true,
-                progressPercentage: true,
-                lastAccessedAt: true,
-              },
-            }
+            where: { userId },
+            select: {
+              id: true,
+              enrolledAt: true,
+              isCompleted: true,
+              completedAt: true,
+              progressPercentage: true,
+              lastAccessedAt: true,
+            },
+          }
           : { select: { id: true }, take: 0 },
         _count: { select: { bookmarks: true, enrollments: true } },
       },
@@ -455,7 +455,8 @@ export const generateChapterContent = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { courseId, chapterId } = req.params;
+    const courseId = req.params.courseId as string;
+    const chapterId = req.params.chapterId as string;
 
     const course = await prisma.course.findUnique({
       where: { id: courseId },
@@ -521,7 +522,7 @@ export const toggleBookmark = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!req.user?.id) {
       return res.status(401).json({ error: "Authentication required" });
@@ -559,7 +560,7 @@ export const enrollCourse = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!req.user?.id) {
       return res.status(401).json({ error: "Authentication required" });
@@ -615,7 +616,7 @@ export const unenrollCourse = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!req.user?.id) {
       return res.status(401).json({ error: "Authentication required" });
@@ -651,7 +652,8 @@ export const updateChapterProgress = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { courseId, chapterId } = req.params;
+    const courseId = req.params.courseId as string;
+    const chapterId = req.params.chapterId as string;
     const { isCompleted } = req.body;
 
     if (!req.user?.id) {
@@ -661,7 +663,7 @@ export const updateChapterProgress = async (
     const userId = req.user.id;
 
     const enrollment = await prisma.courseEnrollment.findFirst({
-      where: { courseId, userId },
+      where: { courseId: courseId, userId },
     });
 
     if (!enrollment) {
@@ -671,7 +673,7 @@ export const updateChapterProgress = async (
     }
 
     const chapter = await prisma.courseChapter.findFirst({
-      where: { id: chapterId, courseId },
+      where: { id: chapterId, courseId: courseId },
     });
 
     if (!chapter) {
@@ -690,12 +692,12 @@ export const updateChapterProgress = async (
     });
 
     const allChapters = await prisma.courseChapter.findMany({
-      where: { courseId },
+      where: { courseId: courseId },
       select: { id: true },
     });
 
     const completedChapters = await prisma.chapterProgress.count({
-      where: { userId, isCompleted: true, chapter: { courseId } },
+      where: { userId, isCompleted: true, chapter: { courseId: courseId } },
     });
 
     const progressPercentage = Math.round(
@@ -736,7 +738,7 @@ export const updateCourse = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const { title, description, topic, isPublic } = req.body;
 
     const course = await prisma.course.findUnique({ where: { id } });
@@ -771,7 +773,7 @@ export const deleteCourse = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     const course = await prisma.course.findUnique({ where: { id } });
     if (!course) {
@@ -796,7 +798,7 @@ export const getUserTests = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const userId = req.user?.id;
 
     if (!userId) {
@@ -812,7 +814,7 @@ export const getUserTests = async (
     const hasAccess =
       course.authorId === userId ||
       (await prisma.courseEnrollment.findFirst({
-        where: { courseId, userId },
+        where: { courseId: courseId, userId },
       }));
 
     if (!hasAccess) {
@@ -820,7 +822,7 @@ export const getUserTests = async (
     }
 
     const tests = await prisma.courseTest.findMany({
-      where: { courseId, userId },
+      where: { courseId: courseId, userId },
       orderBy: { createdAt: "desc" },
       select: {
         id: true,
@@ -861,7 +863,7 @@ export const generateTest = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const userId = req.user?.id;
 
     if (!userId) {
@@ -901,7 +903,7 @@ export const generateTest = async (
 
     // Check cooldown (24 hours)
     const existingTests = await prisma.courseTest.findMany({
-      where: { courseId, userId },
+      where: { courseId: courseId, userId },
       orderBy: { createdAt: "desc" },
     });
 
@@ -966,9 +968,8 @@ export const generateTest = async (
 
     const testPrompt = `CRITICAL: You must respond with VALID JSON ONLY. No markdown, no explanations, no additional text.
 
-You are a professional assessment specialist. Create a comprehensive certification test for the course "${
-      course.title
-    }" based on the provided course content.
+You are a professional assessment specialist. Create a comprehensive certification test for the course "${course.title
+      }" based on the provided course content.
 
 Course: ${course.title}
 Chapter Titles: ${course.chapters.map((ch: any) => ch.title).join(", ")}
@@ -1190,7 +1191,7 @@ Requirements:
 
     const test = await prisma.courseTest.create({
       data: {
-        courseId,
+        courseId: courseId,
         userId,
         questions: JSON.stringify(testData.questions),
         testInstructions: JSON.stringify(testInstructions),
@@ -1226,7 +1227,8 @@ export const submitTest = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { courseId, testId } = req.params;
+    const courseId = req.params.courseId as string;
+    const testId = req.params.testId as string;
     const { answers } = req.body;
     const userId = req.user?.id;
 
@@ -1235,7 +1237,7 @@ export const submitTest = async (
     }
 
     const test = await prisma.courseTest.findFirst({
-      where: { id: testId, courseId, userId },
+      where: { id: testId, courseId: courseId, userId },
     });
 
     if (!test) {
@@ -1253,20 +1255,19 @@ export const submitTest = async (
 
 Questions and Answers:
 ${questions
-  .map(
-    (q: any, i: number) => `
+        .map(
+          (q: any, i: number) => `
 Q${i + 1} [${q.marks} marks] (${q.type}): ${q.question}
-${
-  q.type === "mcq" || q.type === "true_false"
-    ? `Options: ${q.options.join(", ")}\nCorrect: ${q.options[q.correctAnswer]}`
-    : ""
-}
+${q.type === "mcq" || q.type === "true_false"
+              ? `Options: ${q.options.join(", ")}\nCorrect: ${q.options[q.correctAnswer]}`
+              : ""
+            }
 Student Answer: ${answers[i] || "No answer"}
 Sample Answer: ${q.sampleAnswer}
 Key Points: ${q.keyPoints.join(", ")}
 `
-  )
-  .join("\n")}
+        )
+        .join("\n")}
 
 Respond with ONLY valid JSON:
 {
@@ -1347,7 +1348,8 @@ export const getCertificateData = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { courseId, testId } = req.params;
+    const courseId = req.params.courseId as string;
+    const testId = req.params.testId as string;
     const userId = req.user?.id;
 
     if (!userId) {
@@ -1355,7 +1357,7 @@ export const getCertificateData = async (
     }
 
     const test = await prisma.courseTest.findFirst({
-      where: { id: testId, courseId, userId },
+      where: { id: testId, courseId: courseId, userId },
       include: {
         course: {
           include: {
@@ -1418,7 +1420,7 @@ export const verifyCertificate = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { certificateId } = req.params;
+    const certificateId = req.params.certificateId as string;
 
     const test = await prisma.courseTest.findFirst({
       where: {

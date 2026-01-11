@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
-import {prisma} from '../client';
+import { prisma } from '../client';
 import { generatePodcastScript } from '../utils/groqService';
 import { generateAvatarVideo, fetchAvailableAvatars } from '../utils/heygenService';
 
@@ -17,9 +17,9 @@ const upload = multer({
 router.get('/avatars', async (req: Request, res: Response) => {
   try {
     console.log('🎭 Fetching HeyGen avatars...');
-    
+
     const avatarsData = await fetchAvailableAvatars();
-    
+
     res.json({
       success: true,
       data: avatarsData,
@@ -67,8 +67,9 @@ router.get('/', async (req: Request, res: Response) => {
 // Get single podcast
 router.get('/:id', async (req: Request, res: Response) => {
   try {
+    const id = req.params.id as string;
     const podcast = await prisma.podcast.findUnique({
-      where: { id: req.params.id },
+      where: { id },
     });
 
     if (!podcast) {
@@ -140,8 +141,9 @@ router.post('/', upload.single('knowledgeFile'), async (req: Request, res: Respo
 // Delete podcast
 router.delete('/:id', async (req: Request, res: Response) => {
   try {
+    const id = req.params.id as string;
     const podcast = await prisma.podcast.findUnique({
-      where: { id: req.params.id },
+      where: { id },
     });
 
     if (!podcast) {
@@ -152,7 +154,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
 
     await prisma.podcast.delete({
-      where: { id: req.params.id },
+      where: { id },
     });
 
     return res.json({

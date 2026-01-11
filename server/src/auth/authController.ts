@@ -144,7 +144,7 @@ const signin = async (req: Request, res: Response, next: NextFunction) => {
       path: '/',
     });
 
-    res.json({ accessToken, isVerified: true, success: true});
+    res.json({ accessToken, isVerified: true, success: true });
   } catch (error) {
     console.log(error);
     return next(createHttpError(500, 'Error while processing your request'));
@@ -152,7 +152,7 @@ const signin = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 const verifyEmail = async (req: Request, res: Response, next: NextFunction) => {
-  const { token } = req.params;
+  const token = req.params.token as string;
 
   try {
     const verificationToken = await getEmailVerificationToken(token);
@@ -267,7 +267,7 @@ const resetPassword = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { token } = req.params;
+  const token = req.params.token as string;
   const { password, confirmPassword } = req.body;
 
   try {
@@ -319,7 +319,7 @@ const verifyResetToken = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { token } = req.params;
+  const token = req.params.token as string;
 
   try {
     const resetToken = await prisma.passwordResetToken.findUnique({
@@ -374,7 +374,7 @@ const refreshToken = async (
 
         const { accessToken } = generateTokens(user.id);
 
-        res.json({ accessToken , user:{ username: user.username }, isResumeUploaded: user.isResumeUploaded });
+        res.json({ accessToken, user: { username: user.username }, isResumeUploaded: user.isResumeUploaded });
       }
     );
   } catch (error) {

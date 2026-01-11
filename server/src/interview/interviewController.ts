@@ -78,7 +78,7 @@ export const getInterviews = async (req: Request, res: Response, next: NextFunct
 export const getInterviewById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = (req.user as AuthRequest).id;
-    const { id } = req.params;
+    const id = req.params.id as string;
     const interview = await prisma.interview.findFirst({
       where: { id, userId },
     });
@@ -93,18 +93,18 @@ export const getInterviewById = async (req: Request, res: Response, next: NextFu
 };
 
 export const getInterviewResult = async (req: Request, res: Response, next: NextFunction) => {
-    const { id } = req.params;
-    console.log(id);
-    try {
-        
-        const result = await prisma.interviewResults.findUnique({
-            where: { interview_id: id },
-        })
+  const id = req.params.id as string;
+  console.log(id);
+  try {
+
+    const result = await prisma.interviewResults.findUnique({
+      where: { interview_id: id },
+    })
 
 
-        res.status(200).json(result);
-    } catch (err) {
-        console.log(err);
-        return next(createHttpError(500, 'Error retrieving interview'));
-    }
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    return next(createHttpError(500, 'Error retrieving interview'));
+  }
 };
