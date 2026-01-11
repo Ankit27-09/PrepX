@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Podcast, CreatePodcastRequest } from "@/types/podcasts";
+import type{ Podcast, CreatePodcastRequest } from "@/types/podcasts";
 
 const API_BASE = "http://localhost:3000/api";
 
