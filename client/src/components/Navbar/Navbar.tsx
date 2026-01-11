@@ -20,6 +20,7 @@ import {
   User as UserIcon,
   Mic2,
   Code,
+  TrendingUp,
 } from "lucide-react";
 import AdminNavLink from "../admin/AdminNavLink";
 
@@ -181,24 +182,22 @@ export default function ResponsiveNavbar() {
             >
               <button
                 onClick={() => setResourcesOpen((v) => !v)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  resourcesOpen ||
-                  isActive("/pdfs") ||
-                  isActive("/ebooks") ||
-                  isActive("/interview-resources") ||
-                  isActive("/interview-questions")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${resourcesOpen ||
+                    isActive("/pdfs") ||
+                    isActive("/ebooks") ||
+                    isActive("/interview-resources") ||
+                    isActive("/interview-questions")
                     ? "text-[#335441] font-semibold"
                     : "text-[#6B8F60] hover:text-[#335441]"
-                }`}
+                  }`}
                 aria-expanded={resourcesOpen}
                 aria-haspopup="menu"
               >
                 <span>Resources</span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-200 ${
-                    resourcesOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-200 ${resourcesOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {resourcesOpen && (
@@ -233,11 +232,10 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/interview-resources"
                     onClick={() => setResourcesOpen(false)}
-                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${
-                      isActive("/interview-resources")
+                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/interview-resources")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     Interview Resources
@@ -245,11 +243,10 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/interview-questions"
                     onClick={() => setResourcesOpen(false)}
-                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${
-                      isActive("/interview-questions")
+                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/interview-questions")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     DSA Questions
@@ -278,24 +275,23 @@ export default function ResponsiveNavbar() {
             >
               <button
                 onClick={() => setAiToolsOpen((v) => !v)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  aiToolsOpen ||
-                  isActive("/courses") ||
-                  isActive("/roadmaps") ||
-                  isActive("/pdf-chat") ||
-                  isActive("/podcasts")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${aiToolsOpen ||
+                    isActive("/courses") ||
+                    isActive("/roadmaps") ||
+                    isActive("/pdf-chat") ||
+                    isActive("/podcasts") ||
+                    isActive("/industry-insights")
                     ? "text-[#335441] font-semibold"
                     : "text-[#6B8F60] hover:text-[#335441]"
-                }`}
+                  }`}
                 aria-expanded={aiToolsOpen}
                 aria-haspopup="menu"
               >
                 <span>AI Tools</span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-200 ${
-                    aiToolsOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-200 ${aiToolsOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {aiToolsOpen && (
@@ -306,11 +302,10 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/courses"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm rounded-t-lg transition-colors duration-200 ${
-                      isActive("/courses")
+                    className={`block px-4 py-2 text-sm rounded-t-lg transition-colors duration-200 ${isActive("/courses")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     Courses
@@ -330,11 +325,10 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/pdf-chat"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${
-                      isActive("/pdf-chat")
+                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/pdf-chat")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     PDF Chatbot
@@ -342,11 +336,10 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/podcasts"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${
-                      isActive("/podcasts")
+                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/podcasts")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     AI Podcast Studio
@@ -354,11 +347,10 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${
-                      isActive("/voxboard")
+                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/voxboard")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     VoxBoard
@@ -366,11 +358,10 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/interview"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${
-                      isActive("/interview")
+                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/interview")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     Create Interview
@@ -378,14 +369,24 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/your-interviews"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${
-                      isActive("/your-interviews")
+                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/your-interviews")
                         ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                         : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                    }`}
+                      }`}
                     role="menuitem"
                   >
                     Your Interviews
+                  </Link>
+                  <Link
+                    to="/industry-insights"
+                    onClick={() => setAiToolsOpen(false)}
+                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/industry-insights")
+                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      }`}
+                    role="menuitem"
+                  >
+                    Industry Insights
                   </Link>
                 </div>
               )}
@@ -414,9 +415,8 @@ export default function ResponsiveNavbar() {
                   </span>
                   <ChevronDown
                     size={16}
-                    className={`transition-transform duration-200 ${
-                      isProfileDropdownOpen ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform duration-200 ${isProfileDropdownOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
 
@@ -482,11 +482,10 @@ export default function ResponsiveNavbar() {
             ) : (
               <Link
                 to="/Login"
-                className={`flex items-center border-2 border-[#335441] space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/Login")
+                className={`flex items-center border-2 border-[#335441] space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${isActive("/Login")
                     ? "bg-[#335441] text-white"
                     : "text-[#335441] hover:bg-[#335441] hover:text-white"
-                }`}
+                  }`}
               >
                 <LogIn size={20} />
                 <span>Login</span>
@@ -498,20 +497,18 @@ export default function ResponsiveNavbar() {
 
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-55 bg-black/50 transition-opacity duration-300 ${
-          isMobileMenuOpen
+        className={`fixed inset-0 z-55 bg-black/50 transition-opacity duration-300 ${isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
         onClick={() => setIsMobileMenuOpen(false)}
         aria-hidden={!isMobileMenuOpen}
       />
 
       {/* Side Sheet */}
       <div
-        className={`fixed top-0 left-0 h-screen w-80 max-w-[85vw] bg-white border-r-2 border-[#E4D7B4] shadow-2xl transform transition-transform duration-300 ease-in-out z-60 ${
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-screen w-80 max-w-[85vw] bg-white border-r-2 border-[#E4D7B4] shadow-2xl transform transition-transform duration-300 ease-in-out z-60 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile Menu"
@@ -561,9 +558,8 @@ export default function ResponsiveNavbar() {
             </span>
             <ChevronDown
               size={16}
-              className={`transition-transform duration-200 ${
-                mobileResourcesOpen ? "rotate-180" : ""
-              }`}
+              className={`transition-transform duration-200 ${mobileResourcesOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
           {mobileResourcesOpen && (
@@ -571,11 +567,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/pdfs"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/pdfs")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/pdfs")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <FileText size={20} />
                 <span>PDFs</span>
@@ -583,11 +578,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/ebooks"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/ebooks")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/ebooks")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <BookOpen size={20} />
                 <span>E-books</span>
@@ -595,11 +589,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/interview-resources"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/interview-resources")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/interview-resources")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <Briefcase size={20} />
                 <span>Interview Resources</span>
@@ -607,11 +600,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/interview-questions"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/interview-questions")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/interview-questions")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <Code size={20} />
                 <span>DSA Questions</span>
@@ -623,11 +615,10 @@ export default function ResponsiveNavbar() {
           <Link
             to="/discussions"
             onClick={() => setIsMobileMenuOpen(false)}
-            className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-              isActive("/discussions")
+            className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/discussions")
                 ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                 : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-            }`}
+              }`}
           >
             <MessageSquare size={20} />
             <span>Discussions</span>
@@ -645,9 +636,8 @@ export default function ResponsiveNavbar() {
             </span>
             <ChevronDown
               size={16}
-              className={`transition-transform duration-200 ${
-                mobileAiToolsOpen ? "rotate-180" : ""
-              }`}
+              className={`transition-transform duration-200 ${mobileAiToolsOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
           {mobileAiToolsOpen && (
@@ -655,11 +645,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/courses"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/courses")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/courses")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <GraduationCap size={20} />
                 <span>Courses</span>
@@ -667,11 +656,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/roadmaps"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/roadmaps")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/roadmaps")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <Map size={20} />
                 <span>Roadmaps</span>
@@ -679,11 +667,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/pdf-chat"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/pdf-chat")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/pdf-chat")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <MessageSquare size={20} />
                 <span>PDF Chatbot</span>
@@ -691,11 +678,10 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/podcasts"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/podcasts")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/podcasts")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <Mic2 size={20} />
                 <span>AI Podcast Studio</span>
@@ -704,14 +690,24 @@ export default function ResponsiveNavbar() {
                 to="/"
                 target="_blank"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isActive("/voxboard")
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/voxboard")
                     ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                     : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-                }`}
+                  }`}
               >
                 <GitGraphIcon size={20} />
                 <span>VoxBoard</span>
+              </Link>
+              <Link
+                to="/industry-insights"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/industry-insights")
+                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  }`}
+              >
+                <TrendingUp size={20} />
+                <span>Industry Insights</span>
               </Link>
             </div>
           )}
@@ -775,11 +771,10 @@ export default function ResponsiveNavbar() {
             <Link
               to="/Login"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                isActive("/Login")
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/Login")
                   ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                   : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
-              }`}
+                }`}
             >
               <LogIn size={20} />
               <span>Login</span>
