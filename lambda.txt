@@ -1,0 +1,341 @@
+import os
+import json
+import time
+import requests
+import boto3
+from urllib.parse import unquote_plus
+from botocore.exceptions import ClientError
+import pymongo
+from bson.objectid import ObjectId
+
+# --- Configuration & Environment Variables ---
+
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY")
+# UPDATED: Default to 'gemini-1.5-flash' for better stability/speed. 
+# If you have an Env Var set in AWS Lambda, it will override this.
+GEMINI_MODEL_NAME = os.environ.get("GEMINI_MODEL_NAME", "gemini-2.5-flash-lite")
+DB_CONNECTION_STRING = os.environ.get("DB_CONNECTION_STRING", "mongodb://localhost:27017/interviewdb")
+
+# URLs
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com"
+GEMINI_UPLOAD_URL = f"{GEMINI_BASE_URL}/upload/v1beta/files"
+GEMINI_GENERATE_URL = f"{GEMINI_BASE_URL}/v1beta/models/{GEMINI_MODEL_NAME}:generateContent"
+
+# --- Global MongoDB Client ---
+mongo_client = None
+
+# --- Structured Response JSON Schema ---
+STRUCTURED_RESPONSE_SCHEMA = {
+  "type": "OBJECT",
+  "properties": {
+    "detailedAnalysisMarkdown": {
+      "type": "STRING",
+      "description": "A comprehensive, multi-section Markdown report. MUST cover: 1. Interview Breakdown (timestamps), 2. Question Analysis, 3. Signs of Cheating/Malpractice, 4. Candidate's Communication Style, 5. Detailed Feedback (Verbal/Non-verbal/Technical), 6. Overall Rating, 7. Actionable Suggestions."
+    },
+    "technicalAssessment": {
+      "type": "OBJECT",
+      "properties": {
+        "score": {"type": "INTEGER", "description": "Score from 0 to 100."},
+        "feedback": {"type": "STRING"},
+        "strengths": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "weaknesses": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "codeQuality": {"type": "STRING", "description": "Analysis of code quality, if code review was part of the interview."}
+      }
+    },
+    "projectDiscussion": {
+      "type": "OBJECT",
+      "properties": {
+        "score": {"type": "INTEGER", "description": "Score from 0 to 100."},
+        "feedback": {"type": "STRING"},
+        "insights": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "technicalDepth": {"type": "STRING", "description": "Detailed comment on the depth of technical knowledge demonstrated."}
+      }
+    },
+    "behavioralAssessment": {
+      "type": "OBJECT",
+      "properties": {
+        "score": {"type": "INTEGER", "description": "Score from 0 to 100."},
+        "feedback": {"type": "STRING"},
+        "communicationSkills": {"type": "STRING"},
+        "problemSolving": {"type": "STRING"},
+        "teamwork": {"type": "STRING"}
+      }
+    },
+    "malpracticeFlags": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "timestamp": {"type": "STRING", "description": "Timestamp of the flagged event (e.g., 01:23)."},
+          "type": {"type": "STRING", "description": "Type of malpractice (e.g., 'Reading from Screen', 'Interruption')."},
+          "description": {"type": "STRING"}
+        }
+      }
+    },
+    "overallScore": {"type": "INTEGER", "description": "Final score out of 100."},
+    "finalRecommendation": {"type": "STRING", "description": "Final hiring recommendation (e.g., 'Strong Hire', 'No Hire')."}
+  },
+  "required": [
+    "detailedAnalysisMarkdown",
+    "technicalAssessment",
+    "projectDiscussion",
+    "behavioralAssessment",
+    "malpracticeFlags",
+    "overallScore",
+    "finalRecommendation"
+  ]
+}
+
+# --- Utility Functions ---
+
+def get_interview_id_from_key(s3_key):
+    try:
+        parts = s3_key.split('/')
+        filename = parts[-1]
+        if len(parts) >= 2 and len(parts[-2]) == 24: return parts[-2]
+        name_without_ext = os.path.splitext(filename)[0]
+        if len(name_without_ext) == 24: return name_without_ext
+        if '_' in filename and len(filename.split('_')[0]) == 24: return filename.split('_')[0]
+        if '-' in filename and len(filename.split('-')[0]) == 24: return filename.split('-')[0]
+        raise ValueError("Key structure not recognized")
+    except Exception as e:
+        print(f"Error extracting ID: {e}")
+        return None
+
+# --- MongoDB Functions ---
+
+def get_db_handle():
+    global mongo_client
+    if mongo_client is None:
+        print("Initializing new MongoDB client...")
+        mongo_client = pymongo.MongoClient(DB_CONNECTION_STRING)
+    return mongo_client.get_default_database()
+
+def db_update_status(interview_id, is_completed=None, is_evaluated=None):
+    print(f"--- DB: Updating status for {interview_id} ---")
+    try:
+        db = get_db_handle()
+        collection = db["Interview"]
+        updates = {}
+        if is_completed is not None: updates['isCompleted'] = is_completed
+        if is_evaluated is not None: updates['isResultEvaluated'] = is_evaluated
+        if updates:
+            collection.update_one({"_id": ObjectId(interview_id)}, {"$set": updates})
+    except Exception as e:
+        print(f"DB ERROR: {e}")
+
+def db_save_results(interview_id, detailed_response, structured_result):
+    print(f"--- DB: Saving results for {interview_id} ---")
+    try:
+        db = get_db_handle()
+        collection = db["InterviewResults"]
+        doc = {
+            "interview_id": interview_id,
+            "detailed_response": detailed_response,
+            "structured_response": structured_result
+        }
+        collection.insert_one(doc)
+    except Exception as e:
+        print(f"DB ERROR: {e}")
+        raise e
+
+# --- Gemini File API Logic (Raw HTTP) ---
+
+def upload_to_gemini(file_path, mime_type="video/mp4"):
+    """Uploads a file to Gemini File API using raw requests."""
+    file_size = os.path.getsize(file_path)
+    print(f"--- Uploading {file_size} bytes to Gemini File API ---")
+
+    headers = {
+        "X-Goog-Upload-Protocol": "resumable",
+        "X-Goog-Upload-Command": "start",
+        "X-Goog-Upload-Header-Content-Length": str(file_size),
+        "X-Goog-Upload-Header-Content-Type": mime_type,
+        "Content-Type": "application/json"
+    }
+    meta_body = {"file": {"display_name": os.path.basename(file_path)}}
+    
+    init_resp = requests.post(
+        f"{GEMINI_UPLOAD_URL}?key={GEMINI_API_KEY}", 
+        headers=headers, 
+        json=meta_body
+    )
+    init_resp.raise_for_status()
+    upload_url = init_resp.headers.get("x-goog-upload-url")
+
+    with open(file_path, "rb") as f:
+        upload_headers = {
+            "Content-Length": str(file_size),
+            "X-Goog-Upload-Offset": "0",
+            "X-Goog-Upload-Command": "upload, finalize"
+        }
+        upload_resp = requests.post(upload_url, headers=upload_headers, data=f)
+        upload_resp.raise_for_status()
+    
+    file_info = upload_resp.json().get("file", {})
+    file_uri = file_info.get("uri")
+    file_name = file_info.get("name")
+    
+    print(f"Upload successful. URI: {file_uri}")
+    return file_uri, file_name
+
+def wait_for_processing(file_name):
+    """Polls the file status until it is ACTIVE."""
+    print("Waiting for video processing...")
+    while True:
+        resp = requests.get(f"{GEMINI_BASE_URL}/v1beta/{file_name}?key={GEMINI_API_KEY}")
+        resp.raise_for_status()
+        state = resp.json().get("state")
+        
+        if state == "ACTIVE":
+            print("Video is ACTIVE and ready for analysis.")
+            break
+        elif state == "FAILED":
+            raise Exception("Video processing failed on Gemini side.")
+        
+        print("Processing... waiting 2s")
+        time.sleep(2)
+
+# --- Gemini Main Logic ---
+
+def call_gemini_api(video_path, interview_id):
+    print("--- Gemini API: Starting Workflow ---")
+
+    # 1. Upload File
+    file_uri, file_name = upload_to_gemini(video_path)
+
+    # 2. Wait for Processing
+    wait_for_processing(file_name)
+
+    # 3. Generate Content
+    system_instruction = (
+        "You are an expert technical interviewer and behavioral analyst. "
+        "Your task is to evaluate the provided job interview video and return a single JSON object.\n"
+        
+        "REQUIREMENTS:\n"
+        "1. **Structured Data**: Populate the technical, project, and behavioral assessment fields strictly.\n"
+        "2. **Detailed Report**: The 'detailedAnalysisMarkdown' field MUST contain a long-form, well-formatted Markdown report. "
+        "This report must closely follow this structure:\n"
+        "   - **Interview Breakdown and Analysis**: Timestamped breakdown of key events (Waiting, Intro, Questions).\n"
+        "   - **Question Analysis**: For each question, list the Timestamp, Question Asked, Candidate's Response (Visual/Verbal), Ideal Answer, and a Rating.\n"
+        "   - **Signs of Cheating/Malpractice**: Analyze eye movements, screen usage, and audio cues. Conclude definitively.\n"
+        "   - **Candidate's Communication Style**: Analyze engagement, gestures, composure, and clarity.\n"
+        "   - **Detailed Feedback**: Break down into Verbal, Non-Verbal, Technical Knowledge, and Emotional Intelligence.\n"
+        "   - **Overall Rating & Summary**: Provide a final professional assessment.\n"
+        "   - **Actionable Suggestions**: Give specific tips for the candidate to improve.\n\n"
+        
+        "Ensure the 'detailedAnalysisMarkdown' string is properly escaped JSON."
+    )
+    
+    user_prompt = f"Evaluate the interview for ID: {interview_id}. Generate both the structured scores and the detailed Markdown report."
+
+    payload = {
+        "contents": [{
+            "parts": [
+                {"text": user_prompt},
+                {
+                    "fileData": {
+                        "mimeType": "video/mp4",
+                        "fileUri": file_uri
+                    }
+                }
+            ]
+        }],
+        "systemInstruction": {"parts": [{"text": system_instruction}]},
+        "generationConfig": { 
+            "responseMimeType": "application/json",
+            "responseSchema": STRUCTURED_RESPONSE_SCHEMA,
+            "temperature": 0.2
+        }
+    }
+
+    # Retries with Exponential Backoff
+    max_retries = 5
+    base_delay = 2 # seconds
+
+    for attempt in range(max_retries):
+        try:
+            print(f"Sending Generation Request (Attempt {attempt+1})...")
+            response = requests.post(
+                f"{GEMINI_GENERATE_URL}?key={GEMINI_API_KEY}", 
+                headers={'Content-Type': 'application/json'}, 
+                data=json.dumps(payload),
+                timeout=300
+            )
+            response.raise_for_status()
+            
+            result = response.json()
+            content = result.get('candidates', [{}])[0].get('content', {})
+            parts = content.get('parts', [{}])
+            
+            if parts and parts[0].get('text'):
+                structured_result = json.loads(parts[0]['text'].strip())
+                
+                # Extract the detailed markdown
+                detailed_response = structured_result.get('detailedAnalysisMarkdown', 'Detailed analysis not generated.')
+                
+                return detailed_response, structured_result
+
+        except requests.exceptions.RequestException as e:
+            print(f"Request Error: {e}")
+            
+            # Handle 503 (Overloaded) and 429 (Too Many Requests) specifically
+            status_code = 0
+            if hasattr(e, 'response') and e.response is not None:
+                print(f"API Response Body: {e.response.text}")
+                status_code = e.response.status_code
+            
+            if status_code in [503, 429] and attempt < max_retries - 1:
+                wait_time = base_delay * (2 ** attempt) # 2, 4, 8, 16...
+                print(f"Server overloaded. Retrying in {wait_time} seconds...")
+                time.sleep(wait_time)
+                continue
+            
+            # For other errors or last attempt, don't sleep, just log
+            if attempt < max_retries - 1:
+                time.sleep(2)
+            else:
+                print("Max retries reached. Raising error.")
+                raise e
+        except Exception as e:
+            print(f"Unexpected Error: {e}")
+            raise e
+
+    return None, None
+
+# --- Lambda Handler ---
+
+def lambda_handler(event, context):
+    print(f"Received event: {json.dumps(event)}")
+    
+    try:
+        record = event['Records'][0]
+        bucket = record['s3']['bucket']['name']
+        key = unquote_plus(record['s3']['object']['key'])
+        interview_id = get_interview_id_from_key(key)
+        if not interview_id: return {'statusCode': 400, 'body': 'Invalid Key'}
+
+        db_update_status(interview_id, is_completed=True)
+
+        local_path = f'/tmp/{os.path.basename(key)}'
+        s3 = boto3.client('s3')
+        s3.download_file(bucket, key, local_path)
+        
+        detailed, structured = call_gemini_api(local_path, interview_id)
+        
+        if os.path.exists(local_path): os.remove(local_path)
+
+        if structured:
+            db_save_results(interview_id, detailed, structured)
+            db_update_status(interview_id, is_evaluated=True)
+            return {'statusCode': 200, 'body': 'Success'}
+            
+    except Exception as e:
+        print(f"HANDLER ERROR: {e}")
+        # Don't just return string, return JSON so Lambda logs are clean
+        return {
+            'statusCode': 500, 
+            'body': json.dumps({'error': str(e)})
+        }
+        
+    return {'statusCode': 500, 'body': json.dumps({'error': 'Unknown Failure'})}

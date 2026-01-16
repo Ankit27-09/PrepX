@@ -26,10 +26,10 @@ logger = logging.getLogger("agent")
 
 load_dotenv()  # Loads .env by default
 
-access_key = os.getenv("AWS_ACCESS_KEY")
-secret_key = os.getenv("AWS_SECRET_KEY")
+access_key = os.getenv("AWS_ACCESS_KEY_ID")
+secret_key = os.getenv("AWS_SECRET_ACCESS_KEY")
 aws_region = os.getenv("AWS_REGION")
-bucket_name = os.getenv("BUCKET_NAME")
+bucket_name = os.getenv("AWS_S3_BUCKET_NAME")
 
 class Assistant(Agent):
     def __init__(self, chat_ctx: ChatContext) -> None:
@@ -197,8 +197,17 @@ async def entrypoint(ctx: JobContext):
             ),
         )],
     )
+    
+    # Debug logging for S3 upload config
+    logger.info(f"Starting egress - Bucket: {bucket_name}, Region: {aws_region}")
+    logger.info(f"Access key present: {bool(access_key)}, Secret present: {bool(secret_key)}")
+    
     lkapi = api.LiveKitAPI()
-    res = await lkapi.egress.start_room_composite_egress(req)
+    try:
+        res = await lkapi.egress.start_room_composite_egress(req)
+        logger.info(f"Egress started successfully: {res.egress_id}")
+    except Exception as e:
+        logger.error(f"Failed to start egress: {e}")
 
     await lkapi.aclose()
 

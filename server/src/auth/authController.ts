@@ -138,10 +138,11 @@ const signin = async (req: Request, res: Response, next: NextFunction) => {
     const { accessToken, refreshToken } = generateTokens(user.id);
 
     res.cookie('refreshToken', refreshToken, {
-      httpOnly: false,
+      httpOnly: true,
       secure: true,
       sameSite: 'none',
       path: '/',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.json({ accessToken, isVerified: true, success: true });
@@ -392,10 +393,11 @@ const googleCallback = async (
 
   const { accessToken, refreshToken } = generateTokens(_req.user.id);
   res.cookie('refreshToken', refreshToken, {
-    httpOnly: false,
+    httpOnly: true,
     secure: true,
     sameSite: 'none',
     path: '/',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.redirect(process.env.REDIRECT_URL as string);
 };
@@ -408,12 +410,31 @@ const githubCallback = async (
   const _req = req as AuthRequest;
   const { accessToken, refreshToken } = generateTokens(_req.user.id);
   res.cookie('refreshToken', refreshToken, {
-    httpOnly: false,
+    httpOnly: true,
     secure: true,
     sameSite: 'none',
     path: '/',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.redirect(process.env.REDIRECT_URL as string);
+};
+
+const logout = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // Clear the refresh token cookie
+    res.cookie('refreshToken', '', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      path: '/',
+      maxAge: 0, // Expire immediately
+    });
+
+    res.json({ success: true, message: 'Logged out successfully' });
+  } catch (error) {
+    console.log(error);
+    return next(createHttpError(500, 'Error during logout'));
+  }
 };
 
 export {
@@ -426,4 +447,5 @@ export {
   generateResetToken,
   verifyResetToken,
   refreshToken,
+  logout,
 };
