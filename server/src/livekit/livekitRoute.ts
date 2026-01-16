@@ -4,7 +4,7 @@ import { createConnection } from './livekitController';
 
 const livekitRouter = Router();
 
-livekitRouter.get('/connection-details',createConnection );
+livekitRouter.get('/connection-details', createConnection);
 
 
 export default livekitRouter;
