@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
+import passport from 'passport';
 import { prisma } from '../client';
 import { generatePodcastScript } from '../utils/groqService';
 import { generateAvatarVideo, fetchAvailableAvatars } from '../utils/heygenService';
@@ -92,8 +93,8 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
-// Create new podcast
-router.post('/', upload.single('knowledgeFile'), async (req: Request, res: Response) => {
+// Create new podcast (requires authentication)
+router.post('/', passport.authenticate('jwt', { session: false }), upload.single('knowledgeFile'), async (req: Request, res: Response) => {
   try {
     const { title, description, length, knowledgeText } = req.body;
 
@@ -138,8 +139,8 @@ router.post('/', upload.single('knowledgeFile'), async (req: Request, res: Respo
   }
 });
 
-// Delete podcast
-router.delete('/:id', async (req: Request, res: Response) => {
+// Delete podcast (requires authentication)
+router.delete('/:id', passport.authenticate('jwt', { session: false }), async (req: Request, res: Response) => {
   try {
     const id = req.params.id as string;
     const podcast = await prisma.podcast.findUnique({
