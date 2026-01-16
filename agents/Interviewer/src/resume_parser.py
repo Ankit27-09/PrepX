@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 from groq import Groq
 
-load_dotenv(".env.local")
+load_dotenv(".env")
 
 def extract_pdf_text_from_s3_url(s3_url: str) -> str:
    """
@@ -104,7 +104,7 @@ Resume:
 """
 
 groq_api_key = os.getenv("GROQ_API_KEY") 
-client = Groq(api_key=GROQ_API_KEY)
+client = Groq(api_key="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")
 
 def query_groq(prompt, model="llama-3.3-70b-versatile"):
     """
