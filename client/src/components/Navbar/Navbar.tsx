@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
 import { logout as logoutAction } from "@/store/auth/authSlice";
+import { backendUrl } from "@/config/backendUrl";
 import {
   FileText,
   BookOpen,
@@ -82,6 +83,11 @@ export default function ResponsiveNavbar() {
 
   const handleLogout = async () => {
     try {
+      // Call server to clear httpOnly cookie
+      await fetch(`${backendUrl}/api/v1/auth/logout`, {
+        method: 'POST',
+        credentials: 'include',
+      });
       dispatch(logoutAction());
       window.location.href = "/";
     } catch (error) {
@@ -183,12 +189,12 @@ export default function ResponsiveNavbar() {
               <button
                 onClick={() => setResourcesOpen((v) => !v)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${resourcesOpen ||
-                    isActive("/pdfs") ||
-                    isActive("/ebooks") ||
-                    isActive("/interview-resources") ||
-                    isActive("/interview-questions")
-                    ? "text-[#335441] font-semibold"
-                    : "text-[#6B8F60] hover:text-[#335441]"
+                  isActive("/pdfs") ||
+                  isActive("/ebooks") ||
+                  isActive("/interview-resources") ||
+                  isActive("/interview-questions")
+                  ? "text-[#335441] font-semibold"
+                  : "text-[#6B8F60] hover:text-[#335441]"
                   }`}
                 aria-expanded={resourcesOpen}
                 aria-haspopup="menu"
@@ -233,8 +239,8 @@ export default function ResponsiveNavbar() {
                     to="/interview-resources"
                     onClick={() => setResourcesOpen(false)}
                     className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/interview-resources")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -244,8 +250,8 @@ export default function ResponsiveNavbar() {
                     to="/interview-questions"
                     onClick={() => setResourcesOpen(false)}
                     className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/interview-questions")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -276,13 +282,13 @@ export default function ResponsiveNavbar() {
               <button
                 onClick={() => setAiToolsOpen((v) => !v)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${aiToolsOpen ||
-                    isActive("/courses") ||
-                    isActive("/roadmaps") ||
-                    isActive("/pdf-chat") ||
-                    isActive("/podcasts") ||
-                    isActive("/industry-insights")
-                    ? "text-[#335441] font-semibold"
-                    : "text-[#6B8F60] hover:text-[#335441]"
+                  isActive("/courses") ||
+                  isActive("/roadmaps") ||
+                  isActive("/pdf-chat") ||
+                  isActive("/podcasts") ||
+                  isActive("/industry-insights")
+                  ? "text-[#335441] font-semibold"
+                  : "text-[#6B8F60] hover:text-[#335441]"
                   }`}
                 aria-expanded={aiToolsOpen}
                 aria-haspopup="menu"
@@ -303,8 +309,8 @@ export default function ResponsiveNavbar() {
                     to="/courses"
                     onClick={() => setAiToolsOpen(false)}
                     className={`block px-4 py-2 text-sm rounded-t-lg transition-colors duration-200 ${isActive("/courses")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -326,8 +332,8 @@ export default function ResponsiveNavbar() {
                     to="/pdf-chat"
                     onClick={() => setAiToolsOpen(false)}
                     className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/pdf-chat")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -337,8 +343,8 @@ export default function ResponsiveNavbar() {
                     to="/podcasts"
                     onClick={() => setAiToolsOpen(false)}
                     className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/podcasts")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -348,8 +354,8 @@ export default function ResponsiveNavbar() {
                     to="/"
                     onClick={() => setAiToolsOpen(false)}
                     className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/voxboard")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -359,8 +365,8 @@ export default function ResponsiveNavbar() {
                     to="/interview"
                     onClick={() => setAiToolsOpen(false)}
                     className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/interview")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -370,8 +376,8 @@ export default function ResponsiveNavbar() {
                     to="/your-interviews"
                     onClick={() => setAiToolsOpen(false)}
                     className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/your-interviews")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -381,8 +387,8 @@ export default function ResponsiveNavbar() {
                     to="/industry-insights"
                     onClick={() => setAiToolsOpen(false)}
                     className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/industry-insights")
-                        ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                        : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
@@ -483,8 +489,8 @@ export default function ResponsiveNavbar() {
               <Link
                 to="/Login"
                 className={`flex items-center border-2 border-[#335441] space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${isActive("/Login")
-                    ? "bg-[#335441] text-white"
-                    : "text-[#335441] hover:bg-[#335441] hover:text-white"
+                  ? "bg-[#335441] text-white"
+                  : "text-[#335441] hover:bg-[#335441] hover:text-white"
                   }`}
               >
                 <LogIn size={20} />
@@ -498,8 +504,8 @@ export default function ResponsiveNavbar() {
       {/* Overlay */}
       <div
         className={`fixed inset-0 z-55 bg-black/50 transition-opacity duration-300 ${isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
         onClick={() => setIsMobileMenuOpen(false)}
         aria-hidden={!isMobileMenuOpen}
@@ -568,8 +574,8 @@ export default function ResponsiveNavbar() {
                 to="/pdfs"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/pdfs")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <FileText size={20} />
@@ -579,8 +585,8 @@ export default function ResponsiveNavbar() {
                 to="/ebooks"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/ebooks")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <BookOpen size={20} />
@@ -590,8 +596,8 @@ export default function ResponsiveNavbar() {
                 to="/interview-resources"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/interview-resources")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <Briefcase size={20} />
@@ -601,8 +607,8 @@ export default function ResponsiveNavbar() {
                 to="/interview-questions"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/interview-questions")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <Code size={20} />
@@ -616,8 +622,8 @@ export default function ResponsiveNavbar() {
             to="/discussions"
             onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/discussions")
-                ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+              ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+              : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
               }`}
           >
             <MessageSquare size={20} />
@@ -646,8 +652,8 @@ export default function ResponsiveNavbar() {
                 to="/courses"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/courses")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <GraduationCap size={20} />
@@ -657,8 +663,8 @@ export default function ResponsiveNavbar() {
                 to="/roadmaps"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/roadmaps")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <Map size={20} />
@@ -668,8 +674,8 @@ export default function ResponsiveNavbar() {
                 to="/pdf-chat"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/pdf-chat")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <MessageSquare size={20} />
@@ -679,8 +685,8 @@ export default function ResponsiveNavbar() {
                 to="/podcasts"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/podcasts")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <Mic2 size={20} />
@@ -691,8 +697,8 @@ export default function ResponsiveNavbar() {
                 target="_blank"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/voxboard")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <GitGraphIcon size={20} />
@@ -702,8 +708,8 @@ export default function ResponsiveNavbar() {
                 to="/industry-insights"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/industry-insights")
-                    ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                    : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                   }`}
               >
                 <TrendingUp size={20} />
@@ -772,8 +778,8 @@ export default function ResponsiveNavbar() {
               to="/Login"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/Login")
-                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
-                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                 }`}
             >
               <LogIn size={20} />

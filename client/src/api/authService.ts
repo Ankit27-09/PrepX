@@ -1,41 +1,51 @@
 
 import { backendUrl } from '@/config/backendUrl';
-import type{ loginUser, ResetPasswordFormData, signupUser } from "@/validation/userSchema";
+import type { loginUser, ResetPasswordFormData, signupUser } from "@/validation/userSchema";
 
 import axios from 'axios';
 
 const BASE_URL = `${backendUrl}/api/v1`
 
-const apiClient = axios.create({
+// Auth client - WITH credentials (for login/signup that receives/sends cookies)
+const authClient = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true
+  withCredentials: true  // Needed to receive refresh token cookie
+});
+
+// Public client - NO credentials (for email verification, password reset, etc.)
+const publicClient = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: false
 });
 
 
 export const signUp = async (data: signupUser) => {
-  return apiClient.post('/auth/signup',data)
+  return publicClient.post('/auth/signup', data)  // No cookie needed for signup
 }
 
 export const signIn = async (data: loginUser) => {
-  return apiClient.post('/auth/signin',data)
+  return authClient.post('/auth/signin', data)  // Receives refresh token cookie
 }
 
-export const forgotPassword = async (data:{email?: string}) => {
-    return apiClient.post('/auth/reset-password',data)
+export const forgotPassword = async (data: { email?: string }) => {
+  return publicClient.post('/auth/reset-password', data)
 }
 
 export const verifyUserEmail = async (verificationToken: string | undefined) => {
-  return apiClient.get(`/auth/verify-email/${verificationToken}`)
+  return publicClient.get(`/auth/verify-email/${verificationToken}`)
 }
 
 export const verifyResetToken = async (resetToken: string | undefined) => {
-    return apiClient.get(`/auth/verify-token/${resetToken}`)
+  return publicClient.get(`/auth/verify-token/${resetToken}`)
 }
 
 export const resetPassword = async (data: ResetPasswordFormData, resetToken: string | undefined) => {
-  return apiClient.post(`/auth/reset-password/${resetToken}`, data)
+  return publicClient.post(`/auth/reset-password/${resetToken}`, data)
 }
 
