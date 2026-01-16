@@ -14,11 +14,15 @@ import SocialButtons from "@/components/Auth/SocialButtons";
 import { AxiosError } from "axios";
 import type { ErrorResponse } from "@/types/auth";
 import { signIn } from "@/api/authService";
+import { useDispatch } from "react-redux";
+import { silentRefresh } from "@/store/auth/authSlice";
+import type { AppDispatch } from "@/store/store";
 
 type loginFields = loginUser;
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     register,
@@ -33,6 +37,8 @@ const LoginForm: React.FC = () => {
       if (!response.data.isVerified) {
         navigate(`/verifymail?email=${data.email}`);
       } else {
+        // Refresh auth state from server (gets user info with the new token)
+        await dispatch(silentRefresh());
         navigate("/");
       }
     } catch (error) {
