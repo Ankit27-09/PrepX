@@ -10,6 +10,6 @@ const upload = multer();
 router.post('/create', passport.authenticate('jwt', { session: false }), upload.single('resume'), createInterview);
 router.get('/getinterviews', passport.authenticate('jwt', { session: false }), getInterviews);
 router.get('/getinterview/:id', passport.authenticate('jwt', { session: false }), getInterviewById);
-router.get('/getinterviewresults/:id', getInterviewResult);
+router.get('/getinterviewresults/:id', passport.authenticate('jwt', { session: false }), getInterviewResult);
 
 export default router;
