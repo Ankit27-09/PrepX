@@ -14,6 +14,7 @@ import courseRouter from "./courses/courseRoute";
 import industryInsightsRouter from "./industry/industryInsights";
 import livekitRouter from './livekit/livekitRoute';
 import interviewRouter from './interview/interviewRoute';
+import aiTutorRouter from './ai-tutor/aiTutorRoute';
 
 
 config();
@@ -52,8 +53,8 @@ app.get('/', (req: Request, res: Response) => {
 
 // Health check endpoint
 app.get('/api/health', (req: Request, res: Response) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     message: 'DSCE Hackman Server is running',
     environment: {
       GROQ_API_KEY: process.env.GROQ_API_KEY ? '✅ Loaded' : '❌ Missing',
@@ -69,6 +70,7 @@ app.use("/api/v1/courses", courseRouter);
 app.use("/api/industry", industryInsightsRouter);
 app.use('/api/v1/livekit', livekitRouter);
 app.use('/api/v1/interview', interviewRouter);
+app.use('/api/ai-tutor', aiTutorRouter);
 app.use(globalErrorHandler);
 
 export { server, io };
