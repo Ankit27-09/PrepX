@@ -26,6 +26,7 @@ import InterviewHelp from "@/pages/InterviewHelp/InterviewHelp";
 import YourInterviews from "@/pages/YourInterviews/YourInterviews";
 import Results from "@/pages/Results/Results";
 import Interview from "@/pages/AI_Interview/Interview";
+import AITutorPage from "@/pages/AITutor";
 
 const mainLayoutRoutes = [
     {
@@ -148,6 +149,10 @@ const router = createBrowserRouter([
             {
                 path: "/interview/:interviewId",
                 element: <Interview />,
+            },
+            {
+                path: "/ai-tutor",
+                element: <AITutorPage />,
             },
             {
                 path: "*",
