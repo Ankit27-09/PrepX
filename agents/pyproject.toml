@@ -1,0 +1,29 @@
+[project]
+name = "prepx-agents"
+version = "0.1.0"
+description = "PrepX AI Agents - Shared codebase for Interviewer and AI Tutor"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    # LiveKit Agents Core with all plugins
+    "livekit-agents[bey,google,openai,silero,turn-detector]>=1.0.0",
+    "livekit-plugins-noise-cancellation>=0.1.0",
+    # LLM and AI
+    "groq>=0.33.0",
+    # PDF Processing
+    "pdfplumber>=0.11.7",
+    # Utilities
+    "python-dotenv>=1.0.0",
+    "requests>=2.32.5",
+]
+
+[project.scripts]
+interviewer = "Interviewer.src.agent:main"
+ai-tutor = "AITutor.agent:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["Interviewer", "AITutor"]

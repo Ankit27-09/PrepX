@@ -1,0 +1,21 @@
+# Environment files
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Virtual environment (shared at root level)
+.venv/
+venv/
+
+# Dependencies lock files
+*.lock
+
+# IDE
+.idea/
+.vscode/

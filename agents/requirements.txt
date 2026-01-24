@@ -1,0 +1,16 @@
+# PrepX Agents - Shared Dependencies
+# Install: pip install -r requirements.txt
+
+# LiveKit Agents Core with all plugins
+livekit-agents[openai,bey,google,silero,turn-detector]>=1.0.0
+livekit-plugins-noise-cancellation>=0.1.0
+
+# LLM and AI
+groq>=0.33.0
+
+# PDF Processing
+pdfplumber>=0.11.7
+
+# Utilities
+python-dotenv>=1.0.0
+requests>=2.32.5
