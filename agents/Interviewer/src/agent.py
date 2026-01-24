@@ -24,7 +24,7 @@ from resume_parser import extract_pdf_text_from_s3_url, query_groq, build_resume
 import time
 logger = logging.getLogger("agent")
 
-load_dotenv()  # Loads .env by default
+load_dotenv()  # Load shared .env from agents root (run from agents/ directory)
 
 access_key = os.getenv("AWS_ACCESS_KEY_ID")
 secret_key = os.getenv("AWS_SECRET_ACCESS_KEY")
