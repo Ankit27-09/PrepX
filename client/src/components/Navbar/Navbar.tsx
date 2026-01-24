@@ -386,13 +386,24 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/industry-insights"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/industry-insights")
+                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/industry-insights")
                       ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                       : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
                     Industry Insights
+                  </Link>
+                  <Link
+                    to="/ai-tutor"
+                    onClick={() => setAiToolsOpen(false)}
+                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/ai-tutor")
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      }`}
+                    role="menuitem"
+                  >
+                    AI Tutor
                   </Link>
                 </div>
               )}
@@ -714,6 +725,17 @@ export default function ResponsiveNavbar() {
               >
                 <TrendingUp size={20} />
                 <span>Industry Insights</span>
+              </Link>
+              <Link
+                to="/ai-tutor"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/ai-tutor")
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  }`}
+              >
+                <GraduationCap size={20} />
+                <span>AI Tutor</span>
               </Link>
             </div>
           )}
