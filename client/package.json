@@ -25,6 +25,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-query": "^5.90.16",
     "@types/react-redux": "^7.1.34",
+    "@xyflow/react": "^12.10.0",
     "axios": "^1.13.2",
     "chart.js": "^4.5.1",
     "class-variance-authority": "^0.7.1",
