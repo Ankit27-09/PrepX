@@ -10,7 +10,6 @@ import {
     RefreshCw,
     ChevronRight,
     HelpCircle,
-    Home
 } from 'lucide-react';
 import { aiCoursesApi } from './api';
 import type { AiCourse, AiSectionWithContent } from './api';
