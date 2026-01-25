@@ -33,6 +33,8 @@ load_dotenv('.env.local')
 app = Flask(__name__)
 CORS(app)
 
+
+
 # Configuration
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png'}

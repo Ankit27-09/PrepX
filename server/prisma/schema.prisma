@@ -247,3 +247,166 @@ type MalpracticeFlag {
   type        String
   description String
 }
+
+// ============================================================================
+// AI COURSE GENERATION MODELS
+// ============================================================================
+
+model AiCourse {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String   @map("user_id") @db.ObjectId
+  title               String
+  description         String?
+  topic               String
+  level               String   @default("beginner") // beginner, intermediate, advanced, expert
+  goal                String
+  tone                String   @default("professional") // professional, casual, technical
+  targetAudience      String?  @map("target_audience")
+  prerequisites       String?
+  sectionCount        Int      @default(5) @map("section_count")
+  timeCommitment      Int      @default(30) @map("time_commitment")
+  currentSectionIndex Int      @default(0) @map("current_section_index")
+  completedSections   Int      @default(0) @map("completed_sections")
+  isComplete          Boolean  @default(false) @map("is_complete")
+  status              String   @default("draft") // draft, generating, active, completed, archived
+  startDate           DateTime? @map("start_date")
+  endDate             DateTime? @map("end_date")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  sections    AiCourseSection[]
+  files       AiCourseFile[]
+
+  @@map("ai_courses")
+}
+
+model AiCourseSection {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  courseId        String    @map("course_id") @db.ObjectId
+  sectionNumber   Int       @map("section_number")
+  title           String
+  isCompleted     Boolean   @default(false) @map("is_completed")
+  completedAt     DateTime? @map("completed_at")
+  previousContext String?   @map("previous_context")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  course             AiCourse             @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  articlePages       AiArticlePage[]
+  flashcards         AiFlashcard[]
+  mindMaps           AiMindMap[]
+  mcqQuestions       AiMcqQuestion[]
+  trueFalseQuestions AiTrueFalseQuestion[]
+  fillUpQuestions    AiFillUpQuestion[]
+
+  @@map("ai_course_sections")
+}
+
+model AiArticlePage {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId  String    @map("section_id") @db.ObjectId
+  pageNumber Int       @map("page_number")
+  pageTitle  String    @map("page_title")
+  content    String    // Markdown content
+  isRead     Boolean   @default(false) @map("is_read")
+  readAt     DateTime? @map("read_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  section AiCourseSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("ai_article_pages")
+}
+
+model AiFlashcard {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId    String    @map("section_id") @db.ObjectId
+  front        String
+  back         String
+  difficulty   Int       @default(0) // 0-5 scale for spaced repetition
+  nextReviewAt DateTime? @map("next_review_at")
+  reviewCount  Int       @default(0) @map("review_count")
+  correctCount Int       @default(0) @map("correct_count")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  section AiCourseSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("ai_flashcards")
+}
+
+model AiMindMap {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId String   @map("section_id") @db.ObjectId
+  data      String   // JSON string of hierarchical mind map structure
+  createdAt DateTime @default(now()) @map("created_at")
+
+  section AiCourseSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("ai_mind_maps")
+}
+
+model AiMcqQuestion {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId   String    @map("section_id") @db.ObjectId
+  question    String
+  options     String    // JSON array of 4 options
+  answer      String
+  isAttempted Boolean   @default(false) @map("is_attempted")
+  isCorrect   Boolean?  @map("is_correct")
+  userAnswer  String?   @map("user_answer")
+  attemptedAt DateTime? @map("attempted_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  section AiCourseSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("ai_mcq_questions")
+}
+
+model AiTrueFalseQuestion {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId   String    @map("section_id") @db.ObjectId
+  question    String
+  answer      Boolean
+  explanation String
+  isAttempted Boolean   @default(false) @map("is_attempted")
+  isCorrect   Boolean?  @map("is_correct")
+  userAnswer  Boolean?  @map("user_answer")
+  attemptedAt DateTime? @map("attempted_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  section AiCourseSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("ai_true_false_questions")
+}
+
+model AiFillUpQuestion {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId   String    @map("section_id") @db.ObjectId
+  sentence    String    // Sentence with ______ for the blank
+  missingWord String    @map("missing_word")
+  isAttempted Boolean   @default(false) @map("is_attempted")
+  isCorrect   Boolean?  @map("is_correct")
+  userAnswer  String?   @map("user_answer")
+  attemptedAt DateTime? @map("attempted_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  section AiCourseSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("ai_fill_up_questions")
+}
+
+model AiCourseFile {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId      String   @map("course_id") @db.ObjectId
+  filename      String
+  originalName  String   @map("original_name")
+  mimeType      String   @map("mime_type")
+  size          Int
+  path          String
+  isProcessed   Boolean  @default(false) @map("is_processed")
+  extractedText String?  @map("extracted_text")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  course AiCourse @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@map("ai_course_files")
+}
