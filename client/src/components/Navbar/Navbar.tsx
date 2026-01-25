@@ -273,6 +273,8 @@ export default function ResponsiveNavbar() {
               <span>Discussions</span>
             </Link> */}
 
+
+
             <div
               className="relative"
               ref={aiToolsRef}
@@ -397,13 +399,24 @@ export default function ResponsiveNavbar() {
                   <Link
                     to="/ai-tutor"
                     onClick={() => setAiToolsOpen(false)}
-                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/ai-tutor")
+                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${isActive("/ai-tutor")
                       ? "text-[#335441] font-semibold bg-[#F9F6EE]"
                       : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
                       }`}
                     role="menuitem"
                   >
                     AI Tutor
+                  </Link>
+                  <Link
+                    to="/ai-courses"
+                    onClick={() => setAiToolsOpen(false)}
+                    className={`block px-4 py-2 text-sm rounded-b-lg transition-colors duration-200 ${isActive("/ai-courses")
+                      ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                      : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                      }`}
+                    role="menuitem"
+                  >
+                    AI Courses
                   </Link>
                 </div>
               )}
@@ -736,6 +749,28 @@ export default function ResponsiveNavbar() {
               >
                 <GraduationCap size={20} />
                 <span>AI Tutor</span>
+              </Link>
+              <Link
+                to="/ai-courses"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/ai-courses")
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  }`}
+              >
+                <GraduationCap size={20} />
+                <span>AI Courses</span>
+              </Link>
+              <Link
+                to="/jobs"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${isActive("/jobs")
+                  ? "text-[#335441] font-semibold bg-[#F9F6EE]"
+                  : "text-[#6B8F60] hover:text-[#335441] hover:bg-[#F9F6EE]"
+                  }`}
+              >
+                <Briefcase size={20} />
+                <span>AI Job Search</span>
               </Link>
             </div>
           )}

@@ -15,6 +15,7 @@ import industryInsightsRouter from "./industry/industryInsights";
 import livekitRouter from './livekit/livekitRoute';
 import interviewRouter from './interview/interviewRoute';
 import aiTutorRouter from './ai-tutor/aiTutorRoute';
+import aiCoursesRouter from './ai-courses/courseRoute';
 
 
 config();
@@ -71,6 +72,7 @@ app.use("/api/industry", industryInsightsRouter);
 app.use('/api/v1/livekit', livekitRouter);
 app.use('/api/v1/interview', interviewRouter);
 app.use('/api/ai-tutor', aiTutorRouter);
+app.use('/api/v1/ai-courses', aiCoursesRouter);
 app.use(globalErrorHandler);
 
 export { server, io };
