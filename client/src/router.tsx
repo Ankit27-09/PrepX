@@ -27,6 +27,8 @@ import YourInterviews from "@/pages/YourInterviews/YourInterviews";
 import Results from "@/pages/Results/Results";
 import Interview from "@/pages/AI_Interview/Interview";
 import AITutorPage from "@/pages/AITutor";
+import { AiCoursesPage, CourseDetailPage as AiCourseDetailPage } from "@/components/AiCourses";
+
 
 const mainLayoutRoutes = [
     {
@@ -154,6 +156,19 @@ const router = createBrowserRouter([
                 path: "/ai-tutor",
                 element: <AITutorPage />,
             },
+            {
+                path: "/ai-courses",
+                element: <AiCoursesPage />,
+            },
+            {
+                path: "/ai-courses/:id",
+                element: <AiCourseDetailPage />,
+            },
+            {
+                path: "/ai-courses/:id",
+                element: <AiCourseDetailPage />,
+            },
+
             {
                 path: "*",
                 element: <NotFound />,
