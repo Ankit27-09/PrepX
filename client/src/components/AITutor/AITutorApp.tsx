@@ -8,6 +8,7 @@ import { TutorWelcome } from './TutorWelcome';
 import { RpcHandler } from './RpcHandler';
 import useConnectionDetails from './hooks/useConnectionDetails';
 import { TUTOR_CONFIG } from './utils';
+import Navbar from '@/components/Navbar/Navbar';
 
 const MotionWelcome = motion.create(TutorWelcome);
 const MotionSessionView = motion.create(TutorSessionView);
@@ -66,6 +67,7 @@ export function AITutorApp() {
 
     return (
         <div className="relative min-h-screen bg-gray-900">
+            <Navbar />
             {/* Welcome Screen */}
             <MotionWelcome
                 key="welcome"
