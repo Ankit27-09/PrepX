@@ -410,4 +410,4 @@ PrepX leverages the power of AI to provide:
 
 ### ⭐ Star us on GitHub — it motivates us a lot!
 
-Made with ❤️ by **Forbidden Phishers**
+Made with ❤️ by **Ankit Singh**
