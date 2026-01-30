@@ -61,7 +61,6 @@ PrepX leverages the power of AI to provide:
 
 ![AI Interview](./docs/interview1.png)
 ![AI Interview](./docs/interview2.png)
-![AI Interview](./docs/interview3.png)
 
 - **Real-time voice-to-voice conversations** with 3D AI avatars
 - **Resume-based question generation** using Groq LLM
