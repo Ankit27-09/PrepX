@@ -1,166 +1,250 @@
 <div align="center">
 
-# 🚀 PrepX - AI-Powered Learning & Interview Platform
+<img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/a9f918aa-d2bf-4b05-adee-def7eb776435" />
 
-### _Master Your Skills, Ace Your Interviews, Accelerate Your Career_
 
-[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red.svg)](https://github.com/Forbidden-Phishers)
-[![AI Powered](https://img.shields.io/badge/AI-Powered-blue.svg)](https://github.com/Forbidden-Phishers)
-[![Hackathon](https://img.shields.io/badge/Hackathon-DSCE%20HACKMAN%20V8-green.svg)](https://github.com/Forbidden-Phishers)
+### Your Unfair Advantage in the Tech Job Market
 
-[Video Demo](#)
-
-![PrepX Banner](./docs/banner.png)
+Master live interviews, map complex career paths, and upskill faster with a real-time AI co-pilot.
 
 </div>
 
 ---
 
-## 🌟 Overview
+<!-- SCREENSHOT: Landing page hero section -->
+<img width="1900" height="862" alt="image" src="https://github.com/user-attachments/assets/953290a6-96a5-41c7-bc05-409fd5d38faf" />
 
-**PrepX** is a revolutionary AI-powered learning and interview preparation platform that combines cutting-edge technologies like **3D AI Avatars**, **Multi-Modal RAG**, **Real-time Voice Processing**, and **Intelligent Content Generation** to create an immersive, personalized learning experience.
+PrepX is a full-stack, AI-powered career preparation platform that combines **real-time voice/video AI agents**, **multi-agent career intelligence**, and **adaptive learning** into a single unified experience. It goes beyond typical mock interview apps by integrating live AI tutoring with 3D avatars, multi-stage career simulations powered by LangGraph agent workflows, intelligent ATS-connected job discovery, and AI-generated personalized courses - all backed by Google Gemini, Groq LLMs, and LiveKit WebRTC.
 
-We're not just another learning platform - we're your AI-powered career companion that adapts to your pace, understands your goals, and helps you achieve them faster.
 
-### 🎯 Mission
+## The Core Features
 
-To democratize access to high-quality interview preparation and personalized learning through AI, making career advancement accessible to everyone, everywhere.
+### 1. Real Time 3D AI Interview
+
+Practice via live video with an intelligent AI interviewer that adapts to your skill level. Get real-time feedback, proctoring analytics, and detailed performance breakdowns.
+<img width="1422" height="668" alt="image" src="https://github.com/user-attachments/assets/ffc64cb8-d433-4ef1-add0-443c57e1c035" />
+
+
+**Interview Creation : 5-Step Wizard:**
+1. **Job Description** - Upload PDF or paste JD text; AI extracts role, skills, requirements via Groq LLM
+2. **Interview Context** - Resume upload, experience level, focus areas
+3. **Settings** - Duration, difficulty, interview type (technical/behavioral/mixed)
+4. **Review** - Preview all settings before publishing
+5. **Publish** - Go live and enter the interview room
+
+**Interview Room Features:**
+- **Live Video** - WebRTC-powered face-to-face with AI interviewer
+- **Code Editor** - Monaco Editor with syntax highlighting, multiple language support
+- **Coding Questions** - Real problems from LeetCode GraphQL API and Codeforces API
+- **Whiteboard** - Excalidraw integration for system design and diagramming
+- **Timer** - Configurable countdown timer
+- **Chat Panel** - Text-based communication alongside voice
+- **Fullscreen Mode** - Immersive fullscreen interview environment
+
+**Results & Analytics:**
+- **Radar Chart** - Scores across Technical, Communication, Behavioral, Problem-Solving, and Confidence
+- **Skill Assessments** - Per-skill feedback with detailed comments
+- **Proctoring Metrics** - Eye contact, attention, posture, noise levels, and face visibility tracking
+- **Malpractice Detection** - Flagged incidents with severity levels and timestamps
+- **Performance Timeline** - Visual progression throughout the interview
+
+<!-- SCREENSHOT: Interview results page with radar chart and analytics -->
+> 📸 **Screenshot:** *Add a screenshot of the interview results analytics here*
 
 ---
 
-## 💡 The Problem
+### 2. Real Time AI Tutor Assistant
 
-In today's competitive job market, candidates face multiple challenges:
+Connect with a real-time voice and video AI tutor powered by a 3D avatar. Share your screen, code along, and get instant multimodal educational assistance.
 
-- 🎭 **Lack of realistic interview practice** - Traditional mock interviews don't simulate real pressure
-- 📚 **Information overload** - Too many resources, no personalized guidance
-- 💰 **Expensive coaching** - Quality interview prep costs thousands of dollars
-- ⏰ **Time constraints** - Busy schedules make consistent practice difficult
-- 🎯 **Generic learning paths** - One-size-fits-all approaches don't work
-- 📊 **No actionable feedback** - Most platforms don't provide detailed performance analysis
+<img width="1391" height="735" alt="image" src="https://github.com/user-attachments/assets/7dd09836-73b2-410a-96de-125931eabc8e" />
+<img width="989" height="611" alt="image" src="https://github.com/user-attachments/assets/783a7a7c-9ec1-4019-b752-483299d0cf83" />
+
+- **3D Avatar** - Photorealistic avatar powered by Bey SDK with real-time lip sync
+- **Voice Conversation** - Natural voice interaction via Google Gemini Realtime API with "Puck" voice synthesis
+- **Screen Sharing** - Share your screen for the tutor to see and discuss your code or documents
+- **Camera Support** - Enable your webcam for a face-to-face tutoring experience
+- **Live Transcription** - Real-time speech-to-text transcription displayed as chat messages
+- **Text Chat** - Type messages alongside voice for a mixed-mode interaction
+- **Session Summaries** - AI generates detailed session summaries emailed as branded HTML with topics, concepts, and next steps
+- **Adaptive Teaching** - Explanations adapt to your level; errors are guided through step-by-step
+- **WebRTC** - Powered by LiveKit for low-latency real-time audio/video streaming
+
 
 ---
 
-## ✨ Our Solution
+### 3. ATS Job Discovery
 
-PrepX leverages the power of AI to provide:
+Prepx uses a **8-Agent Pipeline** to scour the web, aggregate listings, normalize and deduplicate jobs, and score them against your resume.
+Get deep market analysis (salary trends, skill gaps) from Google Jobs, ATS Feeds and more.
 
-✅ **Realistic 3D Avatar Interviews** - Practice with AI interviewers that look and behave like real humans  
-✅ **Personalized Learning Paths** - AI-generated roadmaps tailored to your career goals  
-✅ **Intelligent Document Analysis** - Chat with your PDFs, resumes, and study materials  
-✅ **Multi-Modal Content Generation** - Create podcasts, videos, and courses from any topic  
-✅ **Real-time Feedback** - Get instant, actionable insights on your performance  
-✅ **24/7 Availability** - Practice anytime, anywhere, at your own pace  
-✅ **Affordable & Accessible** - Free core features with premium options
+<img width="1837" height="871" alt="image" src="https://github.com/user-attachments/assets/c7a97ee5-054e-45be-a8e8-82a3ae4836cf" />
+<img width="1179" height="611" alt="image" src="https://github.com/user-attachments/assets/5226f3a6-42df-48b8-8c11-fbc322ba2689" />
+
+**Multi-Agent Pipeline:**
+```
+ResumeParser → IntentParser → QueryGenerator → DiscoveryAgent → NormalizationAgent → ScoringAgent → InsightsAgent
+```
+
+- **Resume-Powered** — Upload resume or enter profile manually; AI extracts skills, experience, and domains
+- **Multi-Source Discovery** — Aggregates jobs from SerpAPI, Greenhouse ATS, Lever ATS, and configurable job boards
+- **Direct ATS Access** — Scrapes listings from 30+ companies including Airbnb, Stripe, Netflix, Coinbase, Databricks, Notion, Figma, Vercel, and more
+- **AI Scoring** — Each job scored against your profile with match percentage, matching/missing skills breakdown
+- **Chat Refinement** — Conversational interface to refine search results with natural language
+- **Job Enrichment** — Detailed per-job breakdown with skill gap analysis
+- **Search History** — Track past searches with per-user persistence
+- **Location Filtering** — Onsite, remote, hybrid with salary range data
 
 ---
 
-## 🎨 Key Features
+### 4. Smart PDF Chat
 
-### 🤖 1. 3D Avatar AI Interview System
+Transform static documents into interactive learning experiences. Upload PDFs and images, then chat directly with your documents using multi-modal RAG.
 
-![AI Interview](./docs/interview1.png)
-![AI Interview](./docs/interview2.png)
+<img width="1392" height="742" alt="image" src="https://github.com/user-attachments/assets/9a7ed957-e101-49a6-929a-df71e20b1ea0" />
+<img width="1298" height="739" alt="image" src="https://github.com/user-attachments/assets/63419665-1199-4ee6-80c0-9c57575595f6" />
 
-- **Real-time voice-to-voice conversations** with 3D AI avatars
-- **Resume-based question generation** using Groq LLM
-- **Multi-model avatar selection** (Ege, Awais, Andre, Zaid)
-- **Comprehensive performance evaluation** with detailed feedback
-- **Malpractice detection** to ensure authentic practice
-- **Interview recording & playback** for self-review
+- **Multi-Format Upload** - Drag-and-drop PDFs and images with real-time processing feedback
+- **Text Extraction** - PyPDF + PyMuPDF for robust text and embedded image extraction
+- **Image Intelligence** - Automatic image extraction from PDFs with page tracking; vision model analysis of images
+- **Vector Search** - ChromaDB multi-vector retriever with Gemini embeddings (`gemini-embedding-001`)
+- **Contextual Answers** - Markdown-formatted responses with relevant document references and image previews
+- **Code Support** - Syntax-highlighted code blocks with copy-to-clipboard
+  
+---
 
-**Tech**: LiveKit WebRTC, Tavus 3D Avatars, Groq API, AWS S3
+### 🎓 AI Course Generation
 
-### 🧠 2. Multi-Modal RAG PDF Chat
+Generate fully customized courses tailored to your goals — with interactive articles, flashcards, mind maps, and multi-format quizzes.
 
-![PDF Chat](./docs/pdf1.png)
-![PDF Chat](./docs/pdf2.png)
+<!-- SCREENSHOT: Course generation page showing a generated course with sections -->
+> 📸 **Screenshot:** *Add a screenshot of a generated course overview here*
 
-- **Upload PDFs and images** for intelligent analysis
-- **Extract and analyze text, tables, and images** from documents
-- **Context-aware responses** using Google Gemini 2.5 Flash
-- **Image understanding** with vision models
-- **Parallel processing** for fast document ingestion
-- **Persistent vector storage** with ChromaDB
+- **Customizable** — Pick topic, difficulty level, learning goal, tone, and section count (up to 20)
+- **Rich Content** — Each section includes multi-page articles with markdown rendering
+- **Flashcards** — Spaced repetition flashcards with difficulty tracking and review scheduling
+- **Mind Maps** — Hierarchical concept maps rendered as interactive node graphs (React Flow)
+- **Quizzes** — Three formats per section: Multiple Choice, True/False, and Fill-in-the-Blanks
+- **Eagle View** — Bird's-eye visualization of the entire course content as an interconnected node graph
+- **Progress Tracking** — Per-section completion, article read status, quiz scores, and overall progress bars
+- **Powered by** — Google Gemini with structured JSON output and retry logic for reliable generation
 
-**Tech**: LangChain, Google Gemini, ChromaDB, PyMuPDF, Flask
+<!-- SCREENSHOT: Flashcard viewer or mind map view -->
+> 📸 **Screenshot:** *Add a screenshot of the flashcard viewer or mind map here*
 
-### 🎓 3. AI-Powered Course Platform
+---
 
-![Courses](./docs/c1.png)
-![Courses](./docs/c2.png)
-![Courses](./docs/c3.png)
-![Courses](./docs/c4.png)
-![Courses](./docs/c5.png)
-![Courses](./docs/c6.png)
+### 🗺️ Career Path Simulator
 
-- **AI-generated course outlines** from any topic
-- **Chapter-by-chapter content generation** with Groq
-- **Progress tracking** and bookmarking
-- **Automated testing** with AI evaluation
-- **Certificate generation** with QR code verification
-- **Public course marketplace**
+Visualize your future with a comprehensive multi-stage career simulation powered by a 9-node LangGraph agent workflow.
 
-**Tech**: Groq API, Prisma, MongoDB, jsPDF, QRCode
+<!-- SCREENSHOT: Career path dashboard showing simulation results -->
+> 📸 **Screenshot:** *Add a screenshot of the career simulation dashboard here*
 
-### 🎙️ 4. 3D Podcast Studio
+**Two-Stage AI Pipeline:**
 
-![Podcast Studio](./docs/pod1.png)
-![Podcast Studio](./docs/pod2.png)
-![Podcast Studio](./docs/pod3.png)
-![Podcast Studio](./docs/pod4.png)
-![Podcast Studio](./docs/pod5.png)
+**Stage 1 — Career Matching:**
+```
+ProfileParser → CareerMatcher → 3 Best-Fit Career Paths (with scores & reasoning)
+```
 
-- **Generate podcast scripts** from any knowledge base
-- **3D avatar-based podcast creation** with multiple speakers
-- **Customizable podcast length** (Short/Medium/Long)
-- **Real-time generation status** tracking
-- **Audio and video output** formats
-- **Immersive listening experience**
+**Stage 2 — Full Simulation (per selected career):**
+```
+MarketScout → GapAnalyst → TimelineSimulator → FinancialAdvisor → RiskAssessor → DashboardFormatter
+```
 
-**Tech**: Node.js, Express, Socket.io, AI Script Generation
+- **Profile Analysis** — Upload resume or fill detailed form (skills, education, aspirations, psychometrics)
+- **3 Career Matches** — AI scores each fit across skills, interests, market demand, and personality
+- **Market Research** — Real-time market demand, salary ranges, and growth outlook
+- **Gap Analysis** — Missing skills identification with recommended certifications, courses, and projects
+- **Timeline Simulation** — Realistic career progression milestones with timeframes
+- **Financial Projection** — Salary progression, investment needed, and ROI analysis
+- **Risk Assessment** — Market saturation, skills obsolescence, and mitigation strategies
+- **Interactive Dashboard** — Financial charts, risk matrices, and actionable roadmaps
+- **Resume Upload** — Auto-extract profile data from uploaded PDF resumes
 
-### 🗺️ 5. Company Specific DSA Questions
+<!-- SCREENSHOT: Career fits result page with 3 career matches -->
+> 📸 **Screenshot:** *Add a screenshot of the career matches result here*
 
-![DSA](./docs/dsa1.png)
-![DSA](./docs/dsa2.png)
-
-- **Past year DSA Questions of Various companies upto 5 years**
-- **Bottom Dock for graph access and more**
-- **Industry-aligned curriculum**
-
-### 🎨 6. Voice-Powered Excalidraw
-
-![Voiceboard](./docs/excal.png)
-
-- **Voice-to-diagram conversion**
-- **Mermaid diagram support**
-- **Export to multiple formats**
+---
 
 
-**Tech**: Excalidraw, React Speech Recognition
+---
 
-### 📊 7. Industry Insights Dashboard
+### 🎙️ Career Voice Counselor
 
-![Industry Insights](./docs/indins1.png)
-![Industry Insights](./docs/indins2.png)
+Real-time voice-based career counseling agent with MongoDB-backed context awareness.
 
-- **AI-powered trend analysis**
-- **Job market insights**
-- **Skill demand forecasting**
-- **Salary benchmarking**
-- **Company-specific preparation**
+- **Voice Sessions** — 30-minute voice conversations powered by LiveKit + Gemini Realtime
+- **Context-Aware** — Fetches your career roadmap from MongoDB for personalized advice
+- **Career Guidance** — Path evaluation, skill gap analysis, market insights, goal setting
+- **Multi-Channel** — Supports both web-based audio and SIP telephony
 
-### 💼 8. Interview Resources Hub
+---
 
-![Interview Resources](./docs/intR1.png)
-![Interview Resources](./docs/intR2.png)
+## 🏗️ Architecture
 
-- **Curated interview questions** by company and role
-- **DSA problem sets** with solutions
-- **System design templates**
-- **Behavioral question bank**
-- **Markdown-based content** for easy updates
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                          CLIENT (React 19)                          │
+│                        localhost:5173 (Vite)                        │
+│                                                                      │
+│  ┌─────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌───────────┐  │
+│  │ Courses │ │ PDF Chat │ │ Career   │ │ Jobs     │ │ Interviews│  │
+│  │         │ │          │ │ Path     │ │ Discovery│ │ & Tutor   │  │
+│  └────┬────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘ └─────┬─────┘  │
+│       │           │            │             │             │         │
+│       │      Vite Proxy: /api → :5000  |  /api/ai-tutor,           │
+│       │           /api/career, /api/jobs, /api/interviews → :8000   │
+└───────┼───────────┼────────────┼─────────────┼─────────────┼────────┘
+        │           │            │             │             │
+   ┌────▼───────────▼────┐ ┌────▼─────────────▼─────────────▼────────┐
+   │   NODE.JS SERVER    │ │         PYTHON SERVER (FastAPI)          │
+   │   Express 5         │ │         localhost:8000                   │
+   │   localhost:5000     │ │                                         │
+   │                      │ │  ┌──────────┐  ┌───────────────────┐   │
+   │  • Auth (JWT/OAuth)  │ │  │ PDF Chat │  │ Interview System  │   │
+   │  • Course CRUD       │ │  │ (RAG)    │  │ (Groq + LiveKit)  │   │
+   │  • Course Generation │ │  └──────────┘  └───────────────────┘   │
+   │    (Gemini API)      │ │  ┌──────────┐  ┌───────────────────┐   │
+   │  • Quiz & Flashcard  │ │  │ Career   │  │ Job Discovery     │   │
+   │    Tracking          │ │  │ Simulator│  │ (7-Agent Graph)   │   │
+   │                      │ │  │(LangGraph│  │                   │   │
+   │                      │ │  │ 9 Agents)│  │                   │   │
+   └──────────┬───────────┘ │  └──────────┘  └───────────────────┘   │
+              │             └────────────┬───────────────────────────-┘
+              │                          │
+   ┌──────────▼──────────────────────────▼───────────────────────────┐
+   │                        MONGODB ATLAS                            │
+   │                                                                  │
+   │  Collections: users, ai_courses, ai_course_sections,            │
+   │  article_pages, flashcards, mcq_questions, true_false_questions,│
+   │  fill_up_questions, mind_maps, interviews, job_searches,        │
+   │  career_roadmaps                                                 │
+   └──────────────────────────────────────────────────────────────────┘
+
+   ┌──────────────────────────────────────────────────────────────────┐
+   │                      LIVEKIT AGENTS                              │
+   │                                                                  │
+   │  ┌────────────────┐  ┌──────────────────┐  ┌────────────────┐   │
+   │  │  AI Tutor      │  │  AI Interviewer  │  │  Career Voice  │   │
+   │  │  Agent         │  │  Agent           │  │  Counselor     │   │
+   │  │                │  │                  │  │                │   │
+   │  │ • Gemini RT    │  │ • Live Video     │  │ • Gemini RT    │   │
+   │  │ • Bey Avatar   │  │ • Code Eval      │  │ • MongoDB      │   │
+   │  │ • Email Summary│  │ • Proctoring     │  │   Context      │   │
+   │  └────────────────┘  └──────────────────┘  └────────────────┘   │
+   └──────────────────────────────────────────────────────────────────┘
+
+   ┌──────────────────────────────────────────────────────────────────┐
+   │                    EXTERNAL SERVICES                             │
+   │                                                                  │
+   │  Google Gemini API  •  Groq API (Llama 3.3)  •  SerpAPI         │
+   │  LiveKit Cloud  •  Bey Avatars  •  ChromaDB  •  Google OAuth    │
+   │  LeetCode API  •  Codeforces API  •  Greenhouse/Lever ATS       │
+   │  Gmail SMTP                                                      │
+   └──────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -168,245 +252,419 @@ PrepX leverages the power of AI to provide:
 
 ### Frontend
 
-```
-⚛️  React 19 + TypeScript
-🎨  TailwindCSS 4 + Framer Motion
-🔄  React Router v7
-📡  TanStack Query (React Query)
-🗃️  Redux Toolkit
-🎭  Radix UI Components
-📝  Monaco Editor
-🎨  Excalidraw
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| React | 19.2 | UI framework |
+| TypeScript | 5.9 | Type safety |
+| Vite | 7.3 | Build tool & dev server |
+| Tailwind CSS | 4.2 | Utility-first styling |
+| Redux Toolkit | 2.11 | Global state (auth, courses) |
+| Zustand | 5.0 | Lightweight state (career) |
+| React Router | 7.13 | Client-side routing |
+| Motion | 12.34 | Animations & transitions |
+| shadcn/ui + Radix | — | 49 UI components |
+| LiveKit Components | 2.9 | Real-time video/audio |
+| Monaco Editor | 4.7 | Code editor (interviews) |
+| Excalidraw | 0.18 | Whiteboard (interviews) |
+| React Flow | 12.10 | Node graphs (mind maps, eagle view) |
+| Recharts | 3.7 | Data visualization (results) |
+| React Markdown | 10.1 | Markdown rendering |
+| Zod | 3.25 | Schema validation |
+
+### Node.js Backend
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| Express | 5.2 | HTTP framework |
+| Prisma | 6.19 | MongoDB ORM |
+| Google Generative AI | 0.24 | Gemini API for course generation |
+| JSON Web Token | 9.0 | Authentication |
+| bcryptjs | 3.0 | Password hashing (12 rounds) |
+| Zod | 4.3 | Request validation |
+| cookie-parser | 1.4 | Cookie handling |
+
+### Python Backend
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| FastAPI | 0.115+ | Async HTTP framework |
+| LangChain | 0.3+ | LLM orchestration |
+| LangGraph | 0.2+ | Multi-agent workflows |
+| ChromaDB | 0.6+ | Vector database |
+| Google Generative AI | 0.8+ | Gemini models |
+| Groq | 0.9+ | Fast LLM inference (Llama 3.3 70B) |
+| Motor | 3.6+ | Async MongoDB driver |
+| PyMuPDF | 1.25+ | PDF text & image extraction |
+| LiveKit API | 1.0+ | Room tokens & agent dispatch |
+| Pydantic | 2.0+ | Data validation |
+| httpx | 0.27+ | Async HTTP client |
+
+### AI Agents
+
+| Technology | Purpose |
+|-----------|---------|
+| LiveKit Agents Framework | Real-time agent infrastructure |
+| Google Gemini Realtime API | Voice synthesis & understanding |
+| Bey Avatar SDK | 3D photorealistic avatar rendering |
+| Gmail SMTP | Session summary email delivery |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** ≥ 18
+- **Python** ≥ 3.11
+- **MongoDB Atlas** account (or local MongoDB)
+- **Google Cloud** project with Gemini API enabled
+- **LiveKit Cloud** account
+- **Groq** API key
+- **SerpAPI** API key (for job discovery)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/prepx.git
+cd prepx
 ```
 
-### Backend
+### 2. Setup the Node.js Server
 
-```
-🚀  Node.js + Express + TypeScript
-🗄️  MongoDB + Prisma ORM
-🔐  JWT Authentication + Passport.js
-📧  Nodemailer (Email verification)
-☁️  AWS S3 (File storage)
-🔌  Socket.io (Real-time communication)
-🎥  LiveKit (WebRTC infrastructure)
+```bash
+cd server
+npm install
+npx prisma generate
 ```
 
-### Python Services
-
-```
-🐍  Flask + Python 3.13
-🤖  LangChain + LangChain Community
-🧠  Google Gemini 2.5 Flash
-📊  ChromaDB (Vector database)
-📄  PyMuPDF (PDF processing)
-🖼️  Pillow (Image processing)
-```
-
-### AI & ML
-
-```
-🤖  Groq API (LLaMA 3.1 70B)
-🧠  Google Gemini 2.5 Flash & Pro Vision
-🎭  Tavus 3D Avatar API
-🗣️  LiveKit Voice Agents
-📊  LangChain Multi-Vector Retriever
-🔍  Google Generative AI Embeddings
+Create `server/.env`:
+```env
+PORT=5000
+DATABASE_URL=mongodb+srv://<user>:<pass>@<cluster>.mongodb.net/<dbname>
+JWT_SECRET=your-strong-random-secret-key
+JWT_EXPIRES_IN=7d
+CLIENT_URL=http://localhost:5173
+GEMINI_API_KEY=your-gemini-api-key
+NODE_ENV=development
 ```
 
-### DevOps & Tools
+Start the server:
+```bash
+npm run dev
+```
+
+### 3. Setup the Python Server
+
+```bash
+cd python-server
+python -m venv .venv
+
+# Windows
+.venv\Scripts\Activate.ps1
+# macOS/Linux
+source .venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+Create `python-server/.env`:
+```env
+GOOGLE_API_KEY=your-gemini-api-key
+GROQ_API_KEY=your-groq-api-key
+SERPAPI_KEY=your-serpapi-key
+MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>.mongodb.net/<dbname>
+LIVEKIT_URL=wss://your-livekit-url
+LIVEKIT_API_KEY=your-livekit-api-key
+LIVEKIT_API_SECRET=your-livekit-api-secret
+CHROMA_API_KEY=your-chroma-api-key
+CHROMA_TENANT=your-chroma-tenant
+CHROMA_DATABASE=your-chroma-database
+JWT_SECRET=your-strong-random-secret-key
+```
+
+Start the server:
+```bash
+python main.py
+```
+
+### 4. Setup the Frontend
+
+```bash
+cd client
+npm install
+```
+
+Create `client/.env.local`:
+```env
+VITE_GOOGLE_CLIENT_ID=your-google-oauth-client-id
+```
+
+Start the dev server:
+```bash
+npm run dev
+```
+
+### 5. Setup AI Agents (Optional)
+
+```bash
+cd agents/AITutor
+pip install -r requirements.txt   # or install from the agent's dependencies
+```
+
+Create `agents/.env`:
+```env
+LIVEKIT_URL=wss://your-livekit-url
+LIVEKIT_API_KEY=your-livekit-api-key
+LIVEKIT_API_SECRET=your-livekit-api-secret
+GOOGLE_API_KEY=your-gemini-api-key
+MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>.mongodb.net/<dbname>
+DATABASE_NAME=your-database-name
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-gmail-app-password
+BEY_AVATAR_ID=your-bey-avatar-id
+BEY_API_KEY=your-bey-api-key
+```
+
+Start the AI Tutor agent:
+```bash
+cd agents/AITutor
+python agent.py dev
+```
+
+### 6. Access the Application
+
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:5173 |
+| Node.js API | http://localhost:5000 |
+| Python API | http://localhost:8000 |
+| API Docs (FastAPI) | http://localhost:8000/docs |
+
+---
+
+## 🔐 Environment Variables
+
+### Required Variables Summary
+
+| Variable | Used By | Source |
+|----------|---------|--------|
+| `DATABASE_URL` / `MONGODB_URI` | Node / Python | [MongoDB Atlas](https://www.mongodb.com/atlas) |
+| `JWT_SECRET` | Node + Python | Self-generated |
+| `GEMINI_API_KEY` / `GOOGLE_API_KEY` | Node + Python + Agents | [Google AI Studio](https://aistudio.google.com/) |
+| `GROQ_API_KEY` | Python | [Groq Console](https://console.groq.com/) |
+| `SERPAPI_KEY` | Python | [SerpAPI](https://serpapi.com/) |
+| `LIVEKIT_URL` | Python + Agents | [LiveKit Cloud](https://cloud.livekit.io/) |
+| `LIVEKIT_API_KEY` | Python + Agents | LiveKit Cloud |
+| `LIVEKIT_API_SECRET` | Python + Agents | LiveKit Cloud |
+| `CHROMA_API_KEY` | Python | [Chroma](https://www.trychroma.com/) |
+| `VITE_GOOGLE_CLIENT_ID` | Client | [Google Cloud Console](https://console.cloud.google.com/) |
+| `BEY_API_KEY` | Agents | [Bey](https://www.bey.dev/) |
+| `GMAIL_APP_PASSWORD` | Agents | [Google App Passwords](https://myaccount.google.com/apppasswords) |
+
+---
+
+## 📡 API Reference
+
+### Authentication — `Node :5000`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/signup` | Register with email & password |
+| `POST` | `/api/auth/login` | Email/password login |
+| `POST` | `/api/auth/google` | Google OAuth login |
+| `GET` | `/api/auth/me` | Get current user session |
+| `POST` | `/api/auth/logout` | Clear auth cookie |
+
+### Courses — `Node :5000`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/courses` | List all courses with progress |
+| `POST` | `/api/courses` | Create course + generate first section |
+| `GET` | `/api/courses/:id` | Course detail with stats |
+| `DELETE` | `/api/courses/:id` | Delete course |
+| `POST` | `/api/courses/:id/generate-section` | Generate next section |
+| `GET` | `/api/courses/sections/:sectionId` | Full section content |
+| `POST` | `/api/courses/sections/:sectionId/complete` | Mark section complete |
+| `POST` | `/api/courses/articles/:id/read` | Mark article read |
+| `POST` | `/api/courses/mcq/:id/answer` | Submit MCQ answer |
+| `POST` | `/api/courses/truefalse/:id/answer` | Submit T/F answer |
+| `POST` | `/api/courses/fillup/:id/answer` | Submit fill-up answer |
+| `POST` | `/api/courses/flashcards/:id/review` | Review flashcard |
+
+### PDF Chat — `Python :8000`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/pdf-chat/upload` | Upload PDFs & images for RAG |
+| `POST` | `/api/pdf-chat/query` | Query documents |
+| `GET` | `/api/pdf-chat/images/:filename` | Serve extracted images |
+
+### Career Path — `Python :8000`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/career/analyze` | Stage 1: Profile analysis → 3 career fits |
+| `POST` | `/api/career/simulate/selected` | Stage 2: Full simulation for chosen career |
+| `POST` | `/api/career/upload-resume` | Upload resume for extraction |
+
+### Job Discovery — `Python :8000`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/jobs/upload-resume` | Parse resume to profile |
+| `POST` | `/api/jobs/search` | Search & score jobs |
+| `POST` | `/api/jobs/chat` | Refine results via chat |
+| `GET` | `/api/jobs/history` | List past searches |
+| `GET` | `/api/jobs/history/:searchId` | Get specific search results |
+| `DELETE` | `/api/jobs/history/:searchId` | Delete search |
+
+### Interviews — `Python :8000`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/interviews` | List all interviews |
+| `POST` | `/api/interviews/upload-jd` | Upload & parse job description |
+| `POST` | `/api/interviews/manual-jd` | Parse manual JD text |
+| `PATCH` | `/api/interviews/:id` | Update interview settings |
+| `POST` | `/api/interviews/:id/connection-details` | Get LiveKit token |
+| `GET` | `/api/interviews/:id/results` | Get interview results |
+
+### AI Tutor — `Python :8000`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/ai-tutor/connection-details` | Get LiveKit room token |
+
+---
+
+## 📂 Project Structure
 
 ```
-📦  npm + uv (Python package manager)
-🔧  Vite (Build tool)
-🎨  ESLint + Prettier
-🐳  Docker (Coming soon)
-☁️  AWS (S3, EC2)
+prepx/
+├── client/                          # React 19 Frontend
+│   ├── src/
+│   │   ├── Pages/
+│   │   │   ├── Home/                # Landing page (Hero, Features, HowItWorks, CTA)
+│   │   │   ├── Auth/                # Login & Signup
+│   │   │   ├── Courses/             # Course list, detail, section viewer
+│   │   │   ├── PdfChat/             # PDF upload & RAG chat
+│   │   │   ├── Career/              # Career path simulator
+│   │   │   ├── AITutor/             # AI Tutor page
+│   │   │   └── ...
+│   │   ├── components/
+│   │   │   ├── AITutor/             # Tutor session, media tiles, controls
+│   │   │   │   └── livekit/         # LiveKit components (avatar, video, chat)
+│   │   │   ├── layout/              # Navbar, Footer, RootLayout
+│   │   │   └── ui/                  # 49 shadcn/ui components + custom animations
+│   │   ├── store/                   # Redux slices (auth, courses) + hooks
+│   │   ├── lib/                     # API clients, utilities, career store (Zustand)
+│   │   └── router.tsx               # Route definitions
+│   └── vite.config.ts               # Vite config with API proxies
+│
+├── server/                          # Node.js/Express Backend
+│   ├── prisma/
+│   │   └── schema.prisma            # MongoDB schema (User, Course, Section, Quiz...)
+│   └── src/
+│       ├── controllers/             # Auth & Course controllers
+│       ├── services/                # Course generator (Gemini), auth service
+│       ├── middlewares/             # JWT auth guard, error handler
+│       ├── routes/                  # Express route definitions
+│       ├── validators/              # Zod schemas
+│       └── utils/                   # JWT, cookie, sanitization helpers
+│
+├── python-server/                   # FastAPI Backend
+│   ├── src/
+│   │   ├── routers/                 # PDF chat, interviews, jobs, AI tutor, career voice
+│   │   ├── services/
+│   │   │   ├── pdf_chat/            # RAG pipeline (upload, query, embeddings)
+│   │   │   ├── interview/           # JD parsing, coding questions, Groq LLM
+│   │   │   └── jobs/                # Job discovery service, resume parsing
+│   │   ├── config/                  # Settings, ATS company registry
+│   │   └── models/                  # Pydantic models
+│   └── app/
+│       └── career/                  # Career simulator module
+│           ├── graph.py             # LangGraph workflow (9 agent nodes)
+│           ├── agents/              # ProfileParser, CareerMatcher, MarketScout...
+│           └── models/              # Career profile Pydantic models
+│
+└── agents/                          # LiveKit AI Agents
+    ├── AITutor/                     # Voice/video tutor (Gemini RT + Bey Avatar)
+    ├── AIInterviewer/               # Live interview agent
+    └── CareerCounselor/             # Voice career counselor
 ```
 
 ---
 
-## 🏗️ Architecture
+## 📊 Database Schema
 
-![Architecture Diagram - DSCE-HACKMAN V8](https://github.com/user-attachments/assets/8bf91796-c672-441f-82fd-71c36dc4edc6)
+PrepX uses **MongoDB** via Prisma ORM (Node server) and Motor async driver (Python server).
 
+### Prisma Models (Node Server)
 
-## 🎯 Features in Detail
+```
+User
+├── id, name, email, password?, provider (LOCAL|GOOGLE), avatar?
+└── AiCourse[] (one-to-many)
 
-### 🤖 AI Interview System
+AiCourse
+├── id, userId, title, topic, description, level, goal, tone
+├── sectionCount, completedSections, status (draft|generating|active|completed)
+└── AiCourseSection[] (one-to-many)
 
-#### How It Works
+AiCourseSection
+├── id, courseId, sectionNumber, title, isCompleted
+├── AiArticlePage[] ─── pageNumber, pageTitle, content (markdown), isRead
+├── AiFlashcard[] ───── front, back, difficulty (0-5), nextReviewAt
+├── AiMcqQuestion[] ─── question, options[], answer, isCorrect?
+├── AiTrueFalseQuestion[] ── question, answer (bool), explanation
+├── AiFillUpQuestion[] ──── sentence, missingWord, isCorrect?
+└── AiMindMap[] ────── data (JSON tree)
+```
 
-1. **Setup Phase**
+### MongoDB Collections (Python Server)
 
-   - User uploads resume (PDF/DOC)
-   - Selects job role and AI model
-   - Provides additional context
-
-2. **Interview Phase**
-
-   - Real-time WebRTC connection via LiveKit
-   - 3D avatar renders using Tavus API
-   - Voice-to-voice conversation
-   - AI generates contextual questions based on resume
-   - Malpractice detection monitors behavior
-
-3. **Evaluation Phase**
-   - Comprehensive analysis of responses
-   - Technical, behavioral, and project assessment
-   - Scoring across multiple dimensions
-   - Detailed feedback and improvement suggestions
-
-#### Evaluation Metrics
-
-- **Technical Assessment** (40%)
-
-  - Code quality and problem-solving
-  - Technical knowledge depth
-  - Best practices awareness
-
-- **Project Discussion** (30%)
-
-  - Project complexity and impact
-  - Technical decisions and trade-offs
-  - Learning and growth mindset
-
-- **Behavioral Assessment** (30%)
-  - Communication skills
-  - Problem-solving approach
-  - Teamwork and collaboration
-
-### 📚 Multi-Modal RAG System
-
-#### Advanced Features
-
-- **Parallel Processing**: Multiple PDFs processed simultaneously
-- **Image Understanding**: Extracts and analyzes charts, diagrams, and graphs
-- **Table Extraction**: Preserves tabular data structure
-- **Context-Aware Retrieval**: Multi-vector retriever for better accuracy
-- **Streaming Responses**: Real-time answer generation
-
-#### Supported Formats
-
-- PDF documents
-- Images (JPG, PNG)
-- Mixed content (text + images + tables)
-
-### 🎓 Course Platform
-
-#### Course Creation Workflow
-
-1. Enter topic and description
-2. AI generates comprehensive outline
-3. Review and customize chapters
-4. Generate content for each chapter
-5. Publish to marketplace
-
-#### Testing & Certification
-
-- AI-generated questions based on course content
-- Multiple choice and descriptive questions
-- Automated evaluation using Groq LLM
-- Pass/fail determination (80% threshold)
-- Certificate with QR code verification
-- Blockchain-ready certificate IDs
+| Collection | Purpose | Key Fields |
+|-----------|---------|------------|
+| `interviews` | Interview sessions | user_id, job_details, settings, status, results |
+| `job_searches` | Job discovery history | user_id, profile, jobs[], scores, timestamps |
+| `career_roadmaps` | Career simulation results | user_id, career_fits, simulation_data |
 
 ---
 
-## 🤖 AI Models & APIs
+## 🔒 Authentication
 
-### Groq API
+PrepX uses **JWT-based authentication** with HTTP-only cookies:
 
-- **Model**: LLaMA 3.1 70B Versatile
-- **Use Cases**:
-  - Course content generation
-  - Interview question generation
-  - Test evaluation
-  - Script generation
-- **Why Groq**: Fastest inference speed, cost-effective, high-quality outputs
-
-### Google Gemini
-
-- **Models**:
-  - Gemini 2.5 Flash (text)
-  - Gemini 2.5 Flash Vision (multi-modal)
-- **Use Cases**:
-  - PDF text analysis
-  - Image understanding
-  - Multi-modal RAG
-  - Content summarization
-- **Why Gemini**: Best-in-class multi-modal capabilities, free tier available
-
-### Tavus 3D Avatars
-
-- **Use Case**: Realistic 3D avatar rendering for interviews
-- **Features**: Multiple avatar models, real-time lip-sync, natural expressions
-- **Why Tavus**: Most realistic avatars, easy integration with LiveKit
-
-### LiveKit
-
-- **Use Case**: WebRTC infrastructure for real-time interviews
-- **Features**: Voice agents, low latency, scalable
-- **Why LiveKit**: Open-source, reliable, excellent documentation
+- **Password Hashing** — bcryptjs with 12 salt rounds
+- **Token Storage** — HTTP-only, secure, SameSite=Lax cookies (7-day expiry)
+- **Token Fallback** — Also accepts `Authorization: Bearer <token>` header
+- **OAuth** — Google OAuth 2.0 with server-side token verification
+- **Protected Routes** — Frontend guards redirect unauthenticated users to `/login`
+- **User Scoping** — All data (courses, interviews, jobs, career) is scoped to the authenticated user
 
 ---
 
-## 👥 Team - Forbidden Phishers
+## 🤝 Contributing
 
-### 👥 Developers
-
-- **Sarthak Patel**
-  [GitHub](https://github.com/Community-Programmer/) • [Portfolio](https://sarthak-patel.web.app/) • [LinkedIn](https://www.linkedin.com/in/sarthak-patel23/)
-
-- **Ankit Singh**
-  [GitHub](https://github.com/ankit27-09/) • [Portfolio](https://iankit-singh.web.app/) • [LinkedIn](https://www.linkedin.com/in/ankit-singh-23376a282/)
-
-- **Sarthak Rawat**
-  [GitHub](https://github.com/SarthakRawat-1/) • [Portfolio](https://sarthak-rawat.web.app/) • [LinkedIn](https://www.linkedin.com/in/sarthak-rawat24?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
-
-- **Tarin Agarwal**
-  [GitHub](https://github.com/tarinagarwal/) • [Portfolio](https://tarinagarwal.in) • [LinkedIn](https://www.linkedin.com/in/tarin-agarwal-810793267/)
-
-
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
+## 📄 License
 
-## 🏆 Hackathon Highlights
-
-### Innovation
-
-- **First-of-its-kind** 3D avatar interview system
-- **Multi-modal RAG** with image understanding
-- **Voice-powered** diagramming tool
-- **End-to-end** learning ecosystem
-
-### Technical Excellence
-
-- **Microservices architecture** for scalability
-- **Real-time communication** with WebRTC
-- **Advanced AI integration** across the stack
-- **Production-ready** code quality
-
-### Impact
-
-- **Democratizes** interview preparation
-- **Reduces cost** of quality coaching by 90%
-- **Increases accessibility** to career resources
-- **Empowers** job seekers worldwide
-
-### Scalability
-
-- **Cloud-native** architecture
-- **Horizontal scaling** capabilities
-- **CDN-ready** for global distribution
-- **Database optimization** for performance
-
----
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
 
-### ⭐ Star us on GitHub — it motivates us a lot!
+**Built with ❤️ using AI-first architecture**
 
-Made with ❤️ by **Ankit Singh**
+[⬆ Back to Top](#prepx)
+
+</div>
